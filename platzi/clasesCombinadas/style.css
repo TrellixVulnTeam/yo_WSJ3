@@ -1,0 +1,20 @@
+
+/* HERMANO CERCANO  ADYACENTE */
+/* h2 + p{  
+    color: red;
+} */
+
+/* toda etiqueta de parrafo cerca de un h2 */
+/* h2 ~ p{
+    color: red;
+} */
+
+/* PADRE HIJO DIRECTO*/
+/* div > p {
+    color:red;
+} */
+
+/* DESCENDIENTES */
+div p{
+    color: red;
+}

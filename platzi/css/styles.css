@@ -1,0 +1,18 @@
+body{
+background-color: violet;
+
+}
+
+p{
+    font-size:large;
+    color: blue;
+}
+/*Classes*/
+.parrafo{
+    color:yellow;
+}
+/*ID*/
+#texto{
+    color: green;
+
+}

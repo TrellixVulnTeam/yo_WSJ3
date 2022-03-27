@@ -1,0 +1,70 @@
+td.casilla {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    text-align: center !important;
+    padding: 30px !important;
+  }
+  
+  .borde-abajo {
+    border-bottom: solid 5px gray !important;
+  }
+  
+  .borde-derecha {
+    border-right: solid 5px gray !important;
+  }
+  
+  .sin-borde-arriba {
+    border-top: none;
+  }
+  
+  .linea-ganadora {
+      position: absolute;
+      z-index: 10;
+      background-color: #900C3F;
+      border-style: none;
+      opacity: 0.5;
+      display: inline-block;
+      visibility: hidden;
+  }
+  
+  .linea-ganadora-horizontal {
+      width: 360px;
+      height: 20px;
+  }
+  
+  .linea-ganadora-vertical {
+      width: 20px;
+      height: 360px;
+  }
+  
+  .linea-ganadora-1 {
+      top: 120px;
+  }
+  
+  .linea-ganadora-2 {
+      top: 240px;
+  }
+  
+  .linea-ganadora-3 {
+      top: 360px;
+  }
+  
+  .linea-ganadora-4 {
+      left: 68px;
+  }
+  
+  .linea-ganadora-5 {
+      left: 188px;
+  }
+  
+  .linea-ganadora-6 {
+      left: 308px;
+  }
+  
+  .linea-ganadora-7, .linea-ganadora-8 {
+      position: absolute; 
+      opacity: 0.5; 
+      z-index: 10;
+      visibility: hidden;
+  }

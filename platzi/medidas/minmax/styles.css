@@ -1,0 +1,18 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+main{
+    width: 100vw;
+    height: 100vh;
+    background-color: darkred;
+}
+section{
+    width: 80%;
+    min-width: 100px ;
+    max-width: 200px;
+    min-height:200px;
+    background-color: green;
+    margin: auto;
+}

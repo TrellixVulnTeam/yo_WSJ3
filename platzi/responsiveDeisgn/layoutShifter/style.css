@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  font-size: 62.5%;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.c1,
+.c2,
+.c3,
+.c4,
+.c5 {
+  border-radius: 3rem;
+  width: 100vw;
+  height: 150px;
+}
+
+.c1 {
+  background-color: orange;
+  order: 1;
+}
+.c2 {
+  background-color: pink;
+  order: 2;
+}
+.c3 {
+  background-color: brown;
+  order: 3;
+}
+.c4 {
+  background-color: green;
+  order: 4;
+}
+.c5 {
+  background-color: purple;
+  order: 5;
+}
+.c6 {
+  background-color: cyan;
+}
+
+@media (min-width: 600px) {
+
+  .c1 {
+    width: 25vw;
+   order:1;
+  }
+  .c2 {
+    width: 75vw;
+    order:2;
+  }
+  .c3 {
+    width: 100vw;
+   order:3;
+  }
+  .c4 {
+    width: 100vw;
+    order:4;
+  }
+  .c5 {
+    width: 100vw;
+    order:5;
+  }
+}
+
+@media (min-width: 600px) {
+
+  .c1 {
+    width: 30vw;
+  }
+  .c2 {
+    width: 40vw;
+  }
+  .c3 {
+    width: 30vw;
+  }
+  .c4 {
+    width: 50vw;
+  }
+  .c5 {
+    width: 50vw;
+  }
+}
+

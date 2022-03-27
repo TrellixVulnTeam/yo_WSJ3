@@ -1,0 +1,21 @@
+<HTML><HEAD>
+ <SCRIPT src="../node_modules/jquery/jquery.min.js"></SCRIPT>
+  <SCRIPT>
+   $( document ).ready ( function () {
+     $( "#valor" ). keyup ( function () {
+        $.ajax ({       
+          "url" : "raiz.php",
+          "type" : "post",
+          "data" : { "valor" : $( this ).val () },
+          "success" : function ( response ) {
+              $( "#resultado" ).html( JSON.parse ( response ) );
+          }
+        }) ;
+      }) ;
+    }) ;
+ </SCRIPT>
+</HEAD>
+<BODY>
+   <INPUT type="text" id="valor">
+   <DIV id="resultado"></DIV>
+</BODY></HTML>
