@@ -1,0 +1,309 @@
+
+body{
+      background: linear-gradient(  rgba(68, 138, 255, 0.55), 
+                                    rgba(59, 89, 152, 0.65)),
+                                    url("../assets/img/background/breadcrumb-bg.jpg") no-repeat center center fixed ; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+}
+
+.container{
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+}
+
+.forms-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+}
+.signin-signup {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      width: 50%;
+      transition: 1s 0.7s ease-in-out;
+      display: grid;
+      grid-template-columns: 1fr;
+      z-index: 5;
+}
+
+form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0rem 5rem;
+      transition: all 0.2s 0.7s;
+      overflow: hidden;
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+}
+form.sign-up-form {
+      opacity: 0;
+      z-index: 1;
+} 
+
+.login_form{
+	position: absolute;
+	color: #fff;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 95%;
+	max-width: 350px;
+	padding: 15px;
+	box-shadow: 0 0 3px rgba(121, 120, 120, 0.7);
+	border-radius: 20px 20px 20px 20px;
+	background-color: rgba(250, 250, 250, 0.829);
+}
+
+.login_form a{
+	display: block;
+	text-align: right;
+	text-decoration: none;
+	color: #444;
+	font-size: 1.0rem;
+	transition: .3s;
+	-webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none; 
+}
+
+.login_form a:hover{
+	color: #dd580b;
+}
+
+.login_form .section span {
+      color: rgb(31, 108, 197);
+}
+
+.img_logo{
+      position: relative;
+      z-index: 0;
+      width: 12vw;
+      object-fit: cover;
+}
+
+.title {
+      font-size: 2.2rem;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #444;
+      margin-bottom: 10px;
+      text-align: center;
+}
+
+.input-field {
+      max-width: 360px;
+      width: 90%;
+      background-color: #f0f0f0;
+      margin: 10px 0;
+      height: 55px;
+      border-radius: 55px;
+      display: grid;
+      grid-template-columns: 15% 85%;
+      padding: 0 0.4rem;
+      position: relative;
+}
+
+.input-field i {
+      text-align: center;
+      line-height: 55px;
+      color: #acacac;
+      transition: 0.5s;
+      font-size: 1.1rem;
+}
+
+.input-field input {
+      background: none;
+      outline: none;
+      border: none;
+      line-height: 1;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #333;
+} 
+
+.input-field input::placeholder {
+      color: #aaa;
+      font-weight: 500;
+}
+
+.input-field.focus:before, .input-div.focus:after{
+	width: 50%;
+}
+
+.input-field.focus > i{
+	color: #38d39f !important;
+}
+
+/* see password */
+#display{
+      position: absolute;
+      right: 15px;
+      color: #acacac;
+      font-size: 1.1rem;
+}
+
+.btn {
+      width: 150px;
+      background-color: #5995fd;
+      border: none;
+      outline: none;
+      height: 49px;
+      border-radius: 49px;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: 0.5s;
+}
+.btn:hover {
+      background-color: #4d84e2;
+}
+
+.loginsubmit{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+}
+
+input[type=checkbox] {
+	visibility: hidden;
+}
+
+.checkbox-Alex{
+      display: inline-block;
+	position: relative;
+      margin-left: 5px;
+      width: 70px;
+	height: 30px;
+	background: #fff;
+	border-radius: 15px;
+	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.2), 0px 1px 0px rgba(0,0,0,0.2);
+}
+
+.checkbox-Alex label {
+      /* aspecto */
+      display: block;
+      width: 34px;
+	height: 20px;
+	border-radius: 17px;
+	box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.35);
+	background: #fcfff4;
+	background: linear-gradient(to top, #c4f53f 0%, #b5f75e 40%, #bce7a4 100%);
+      cursor: pointer;
+    
+      /* Posicionamiento */
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      z-index: 1;
+    
+	/* Comportamiento */
+      transition: all .4s ease;
+      /* ocultar el posible texto que tenga */
+      overflow: hidden;
+      text-indent: 35px;  
+      transition: text-indent 0s;
+}
+
+.checkbox-Alex input[type=checkbox]:checked + label {
+	left: auto;
+      right: 5px;
+}
+
+.checkbox-Alex:after {
+	content: 'CC';
+	font: 12px/30px Arial, sans-serif;
+	color: #AAA;
+	position: absolute;
+	right: 10px;
+    z-index: 0;
+	font-weight: bold;
+	text-shadow: 1px 1px 0px rgba(255,255,255,.20);
+}
+
+.checkbox-Alex:before {
+	content: 'CT';
+	font: 12px/30px Arial, sans-serif;
+	color: #AAA;
+	position: absolute;
+	left: 10px;
+	z-index: 0;
+	font-weight: bold;
+}
+
+@media (max-width: 900px) {
+      .container {
+        min-height: 800px;
+        height: 100vh;
+      }
+      .signin-signup {
+        width: 100%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: 1s 0.8s ease-in-out;
+      }
+      .signin-signup,
+      .container.sign-up-mode .signin-signup {
+        left: 50%;
+      }
+
+      .img_logo{
+            width: 28vw !important;
+      }
+  
+}
+
+@media screen and (max-width:1700px){
+      .img_logo{
+            width: 12vw !important;
+      }
+}
+
+@media screen and  (max-width:1000px){
+      .img_logo{
+            width: 28vw !important;
+      }
+}
+
+@media screen and (max-width:490px){
+      .img_logo{ 
+            width: 35vw !important;
+      }
+}
+
+
+@media screen and (max-width:800px) and (orientation: portrait){
+  
+      .signin-signup {
+            position: absolute;
+            top: 42%;
+      }
+    
+}
+
+@media screen and (max-width:800px) and (orientation: landscape){
+  
+      .signin-signup {
+            position: absolute;
+            top: 38%;
+      }
+
+      .img_logo{
+            height: 150px;
+            width: 150px;
+      }
+    
+}
+
