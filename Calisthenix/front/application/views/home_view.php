@@ -425,32 +425,20 @@
                             <div class="container-login">
                                 <div class="forms-container">
                                     <div class="signin-signup">
-                                    <!-- //INICIAR SESION FORM  -->
-
-                                    <form method="post" class="login_form" id="login_form">
-
-                                            <h2 class="title">Welcome</h2>
+                                        <form action="#" class="login_form" id="login_form">
+                                            <h2 class="title">Iniciar Sesión</h2>
                                             <div class="input-field mb-3">
                                                 <i class="fas fa-envelope iconleft" style="left:1px;"></i>
-
-                                                <input type="email" placeholder="Email"  name="correoelectronico" id="correoelectroni qco"/>
+                                                <input type="text" placeholder="Correo electrónico" class="input correoel" name="correoelectronico" id="correoelectronico"/>
                                             </div>
                                             <div class="input-field mb-3">
                                                 <i class="fas fa-key iconleft" style="left:1px;"></i>
-
-                                                <input type="password" name="pass" id="pass" autocomplete="off" placeholder="Password"/>
-
+                                                <input type="password" name="pass" id="pass" autocomplete="off" placeholder="Contraseña" class="input"/>
                                                 <i onclick="show('pass')" class="fas fa-eye-slash fa-fw" id="display" style="margin-right:10px;"></i>
                                             </div>
-
-
-                                       <!-- BOTON ENVIAR -->    
-                                           <input type="button" value="Log in" class=" btn solid btn-session mb-2"
-                                           id="btn-entrar"/>
-
-
-
+                                            <input type="submit" value="Entrar" class=" btn solid btn-session mb-2"/>
                                            
+
                                             <a href="#" onclick="return registrar_usuario()" class="external mb-2"> Create an Account</a>
                                             <div class="section" id="contact">
                                                 <footer>
@@ -529,11 +517,11 @@
         </div>
 
         <div class="aviso-cookies" id="aviso-cookies">
-            <img class="galleta" src="assets/img/cookie.svg" alt="Galleta">
+            <img class="galleta" src="<?=base_url()?>static/assets/img/cookie.svg" alt="Galleta">
             <h3 class="titulo">Cookies</h3>
             <p class="parrafo">Utilizamos cookies propias y de terceros para mejorar nuestros servicios.</p>
             <button class="boton" id="btn-aceptar-cookies">De acuerdo</button>
-            <a class="enlace" href="vistas/aviso-cookies.html">Aviso de Cookies</a>
+            <a class="enlace" href="<?=base_url()?>static/aviso-cookies.html">Aviso de Cookies</a>
         </div>
         <div class="fondo-aviso-cookies" id="fondo-aviso-cookies"></div>
         <!-- Fin Modal Carrito de Compras-->

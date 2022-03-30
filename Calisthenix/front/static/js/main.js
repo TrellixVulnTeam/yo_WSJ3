@@ -11,7 +11,7 @@
 
 
 var elementoEnCarrito = document.getElementById("cantidad-cart");
-var id_usuario = document.getElementById("iduser").value;
+// var id_usuario = document.getElementById("iduser").value;
 var dataItems = [];
 var selectSucursal       = document.querySelector('.select_sucursal');
 var id_sucursal = 1;
@@ -206,6 +206,7 @@ inputs.forEach(input=>{
 
 $('#newModalTableForm').submit(function(e){
     e.preventDefault(); 
+    alert("ups");
     
     let url = 'bd/enlaces/iniciar_sesion_cliente.php';
     let postData = {
