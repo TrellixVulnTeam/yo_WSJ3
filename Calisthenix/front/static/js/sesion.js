@@ -4,7 +4,6 @@ $(document).ready(function(){
     //Evento submit del form-registro
     $("#form-registro").submit(function(e){
         e.preventDefault();
-        alert("estoy registrando");
         // $(".invalid-feedback").remove();
         // $(".is-invalid").removeClass("is-invalid");
         
@@ -42,6 +41,7 @@ $(document).ready(function(){
             }
         })
         .done( function(json){
+            alert(JSON.stringify(json));
             if(json.resultado){
                 alerta("success",json.mensaje);
                 $("#modal-registro").modal("toggle");
@@ -54,12 +54,7 @@ $(document).ready(function(){
             }
 
         })
-        .fail(alert("error"));
-
-       
-
-
-        return true;
+        .fail(error_ajax);
     });
 
     //EVENTO CLICK BOTON REGISTRAR
@@ -71,21 +66,36 @@ $(document).ready(function(){
         $("#modal-telefono").val("");
     });
     
-
-
-
-    $("#btn-entrar").click(function(){
-    
+    $("#newModalTableForm").submit(function(e){
+        e.preventDefault(); 
+        alert("asdfsdfsd");
         $.ajax({
             'url' : appData.ws_url + "acceso/verficausuario/",
             'dataType' : "json",
             "type" : "post",
             "data" : {
                 "email_cliente" : $("#correoelectronico").val()
+                // "password_cliente":$("#pass").val()
             }
         })
         .done(function(json){
              alert(JSON.stringify(json));
+
+            // if(json.email_cliente == ""){
+            //     Swal.fire({
+            //         icon: 'info',
+            //         title: 'Oops...',
+            //         text: 'Debes introducir tu correo electrónico!',
+            //     });
+            // }
+            // else if(json.password_cliente == ""){
+            //     Swal.fire({
+            //         icon: 'info',
+            //         title: 'Oops...',
+            //         text: 'Debes introducir tu contraseña!',
+            //     });
+            // }
+
             if(json.resultado){
                 $(location).attr(
                     "href",
@@ -93,6 +103,8 @@ $(document).ready(function(){
                     json.cliente.idcliente + "/" +
                     json.cliente.nombre_cliente + "/" + 
                     json.cliente.email_cliente + "/" +
+                    json.cliente.apellidos_cliente + "/" +
+                    json.cliente.direccion + "/" +
                     json.token 
                 );
             }
@@ -100,8 +112,13 @@ $(document).ready(function(){
                 alerta("danger",json.mensaje);
             }
         })
-        .fail(alert("error"));
+        .fail(error_ajax);
     })
     
+
+    // $("#cerrarsesion").click(function(){
+    //     cierra_sesion(); 
+    // });
     
-})
+
+});

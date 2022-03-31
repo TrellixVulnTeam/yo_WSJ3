@@ -38,9 +38,10 @@ function alerta( tipo, mensaje ) {
 
 
 function cierra_sesion(){
+	alert("opla");
 setTimeout(function(){
 	$(location).attr("href",
-	appData.base_url + "gato/cierrasesion/"+
+	appData.base_url() + "home/cierrasesion/"+
 	appData.correo + "/" +
 	appData.token);
 },2000);

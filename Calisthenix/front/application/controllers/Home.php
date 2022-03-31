@@ -18,23 +18,45 @@ class Home extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
+	public function index($idcliente = null,$token = null)
+	{  
+
 		$this->load->view('home_view');
 	}
 
 
-    public function inicio($idcliente, $nombre_cliente, $email_cliente,$token){
+    public function inicio($idcliente, $nombre_cliente, $email_cliente,$apellidos_cliente,$direccion,$token){
         $this->session->set_userdata("idcliente", $idcliente);
         $this->session->set_userdata("nombre_cliente", $nombre_cliente);
         $this->session->set_userdata("email_cliente", $email_cliente);
+		$this->session->set_userdata("apellidos_cliente", $apellidos_cliente);
         $this->session->set_userdata("token", $token);
-
-        redirect(base_url()."home/$idcliente/$nombre_cliente/$email_cliente/$token");
+		$this->session->set_userdata("direccion", $direccion);
+        redirect(base_url()."home/index/$idcliente/$token");
     }
 
 
 
+    public function cierrasesion($correo,$token){
+		
+		
+        if ($this->session->userdata) {
+        
+        
+        // verifica_sesion($correo,$token);
+
+            $this->session->unset_userdata(array(
+            "token",
+            "idcliente",
+            "nombre_cliente",
+            "email_cliente",
+			"apellidos_cliente",
+			"direccion"
+        ));
+            $this->session->sess_destroy();
+            redirect(base_url());
+        }
+    }
 	
 
 }

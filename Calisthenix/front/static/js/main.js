@@ -204,59 +204,61 @@ inputs.forEach(input=>{
 }
 );
 
-$('#newModalTableForm').submit(function(e){
-    e.preventDefault(); 
-    alert("ups");
+// $('#newModalTableForm').submit(function(e){
+//     e.preventDefault(); 
+//     alert("ups");
     
-    let url = 'bd/enlaces/iniciar_sesion_cliente.php';
-    let postData = {
-        email: $('#correoelectronico').val(),
-        password: $('#pass').val(),
-    };
-    if(postData.email == ""){
-        Swal.fire({
-            icon: 'info',
-            title: 'Oops...',
-            text: 'Debes introducir tu correo electrónico!',
-        });
-    }
-    else if(postData.password == ""){
-        Swal.fire({
-            icon: 'info',
-            title: 'Oops...',
-            text: 'Debes introducir tu contraseña!',
-        });
-    }
-    else{
-        $.post(url,postData, function(response){
-            //reset formulario
-            $('#newModalTableForm').trigger('reset');
-            datos = JSON.parse(response);
-            let status        = datos.status;
-            let message       = datos.message;
+//     let url =  appData.ws_url + "acceso/verficausuario/";
+//     let postData = {
+//         email_cliente: $('#correoelectronico').val(),
+//         password_cliente: $('#pass').val()
+//     };
+//     if(postData.email == ""){
+//         Swal.fire({
+//             icon: 'info',
+//             title: 'Oops...',
+//             text: 'Debes introducir tu correo electrónico!',
+//         });
+//     }
+//     else if(postData.password == ""){
+//         Swal.fire({
+//             icon: 'info',
+//             title: 'Oops...',
+//             text: 'Debes introducir tu contraseña!',
+//         });
+//     }
+//     else{
+//         $.post(url,postData, function(response){
+//             //reset formulario
+//             $('#newModalTableForm').trigger('reset');
+
+//             alert(response);
+//             // datos = JSON.parse(response);
+//             // let status        = datos.status;
+//             // let message       = datos.message;
             
-            if(status == "error"){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: message,
-                }).then(() => {
-                    document.getElementById("correoelectronico").value = "";
-                    document.getElementById("pass").value = "";
-                });
-            }
-            else{
-                Swal.fire(
-                    'Correct!',
-                    message,
-                    'success'
-                ).then(() => {
-                    $(location).attr('href','index.php');
-                });
-            }
-        });
-    }
-});
+//             // if(status == "error"){
+//             //     Swal.fire({
+//             //         icon: 'error',
+//             //         title: 'Oops...',
+//             //         text: message,
+//             //     }).then(() => {
+//             //         document.getElementById("correoelectronico").value = "";
+//             //         document.getElementById("pass").value = "";
+//             //     });
+//             // }
+//             // else{
+//             //     Swal.fire(
+//             //         'Correct!',
+//             //         message,
+//             //         'success'
+//             //     ).then(() => {
+//             //         $(location).attr('href','index.php');
+//             //     });
+//             // }
+//         });
+//     }
+// });
 
 async function borrar_articulo(idarticulo,cantidad){
     await carrito_de_usuario_borrar_articulo(idarticulo);

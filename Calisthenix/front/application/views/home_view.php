@@ -50,6 +50,9 @@
         <meta name="msapplication-TileColor" content="#00aba9">
         <meta name="theme-color" content="#ffffff">
 
+
+        <link rel="stylesheet" href="<?=base_url()?>static/popup/popup.css"/>
+    <script src="<?=base_url()?>static/popup/popup.js"></script>
       
 
 	<script>
@@ -58,8 +61,10 @@
       ws_url    : "<?=base_url()?>../back/",
       email_cliente    : "<?= $this->session->email_cliente?>",
       nombre_cliente    : "<?= $this->session->nombre_cliente?>",
+      apellidos_cliente    : "<?= $this->session->apellidos_cliente?>",
       token     : "<?= $this->session->token?>",
-      idcliente : "<?= $this->session->idcliente?>"
+      idcliente : "<?= $this->session->idcliente?>",
+      direccion : "<?=$this->session->direccion?>"
     };
 	</script>
 
@@ -78,7 +83,7 @@
 
                 <div class="d-flex justify-content-between mt-4 mb-4">
 		<strong style="color:white">
-			Welcome <?= $this->session->nombre_cliente ?>
+			Welcome <br/><?= $this->session->nombre_cliente ?> <?= $this->session->apellidos_cliente ?> 
 		</strong>
 	</div>
                 <div class="navbarsession">
@@ -86,23 +91,34 @@
                     <li class="nav-item">
 
         <?php
-       if(empty($this->session->userdata('user_id'))):?>
+       if(empty($this->session->userdata('idcliente'))):?>
         
         <button class="btn btn-link" onclick="return iniciarSesion()" id="modal-sesion">
         <a href="#" class="nav-link" onclick="return false;"><i class="fas fa-user me-2" ></i> Iniciar Sesión</a>
         </button>
         <?php
-        elseif(!empty($this->session->userdata('user_id'))):?>
+        elseif(!empty($this->session->userdata('idcliente'))):?>
 
-        <button class="btn btn-link" onclick="return cerrarSesion()">
-        <a href="#" class="nav-link" onclick="return false;"><i class="fas fa-sign-out-alt me-2"></i> Cerrar Sesión</a>
+        <button class="btn btn-link" id="cerrarsesion">
+        <a href="<?= base_url() ?>home/cierrasesion/<?=$this->session->email_cliente?>/<?=$this->session->token?>" class="nav-link" ><i class="fas fa-sign-out-alt me-2"></i> Cerrar Sesión</a>
         </button>
        
        <?php endif;?>
         
 
+       <div id="mensaje" class="ml-1 mt-3 col col-md-6">
+	<?php
+	
+	if($this->session->flashdata("tipo") != NULL &&
+	$this->session->flashdata("mensaje")  != NULL):
+		alerta(
+			$this->session->flashdata("tipo"),
+			$this->session->flashdata("mensaje")
+		);
+	endif;
+	?>
+    </div>
 
-            
                         </li>
                     </ul>
                 </div>
@@ -420,12 +436,12 @@
                           <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <!-- Parte cambiante -->
-                    <form id = "newModalTableForm">
+                    <form id = "newModalTableForm" method="post" >
                         <div class = "modal-body inicioSesionModal" id = "modal_inicio_session_m">
                             <div class="container-login">
                                 <div class="forms-container">
                                     <div class="signin-signup">
-                                        <form action="#" class="login_form" id="login_form">
+                                        <form class="login_form" >
                                             <h2 class="title">Iniciar Sesión</h2>
                                             <div class="input-field mb-3">
                                                 <i class="fas fa-envelope iconleft" style="left:1px;"></i>
@@ -516,14 +532,14 @@
             </div>
         </div>
 
-        <div class="aviso-cookies" id="aviso-cookies">
+        <!-- <div class="aviso-cookies" id="aviso-cookies">
             <img class="galleta" src="<?=base_url()?>static/assets/img/cookie.svg" alt="Galleta">
             <h3 class="titulo">Cookies</h3>
             <p class="parrafo">Utilizamos cookies propias y de terceros para mejorar nuestros servicios.</p>
             <button class="boton" id="btn-aceptar-cookies">De acuerdo</button>
             <a class="enlace" href="<?=base_url()?>static/aviso-cookies.html">Aviso de Cookies</a>
-        </div>
-        <div class="fondo-aviso-cookies" id="fondo-aviso-cookies"></div>
+        </div>  -->
+        <!-- <div class="fondo-aviso-cookies" id="fondo-aviso-cookies"></div> -->
         <!-- Fin Modal Carrito de Compras-->
         <!-- Fin Modals-->
         <!-- Bootstrap core JS-->
@@ -538,7 +554,7 @@
         <script type="text/javascript" src="<?=base_url()?>static/vendor/datatables/js/dataTables.responsive.min.js"></script>
         <script type="text/javascript" src="<?=base_url()?>static/vendor/datatables/js/sum.js"></script>
         
-        <script src="<?=base_url()?>static/js/aviso-cookies.js"></script>
+        <!-- <script src="<?=base_url()?>static/js/aviso-cookies.js"></script> -->
         <!-- Core theme JS-->
         <script src="<?=base_url()?>static/js/scripts.js"></script>
         <!---

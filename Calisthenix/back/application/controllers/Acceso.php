@@ -13,6 +13,7 @@ class Acceso extends CI_Controller
 
 
     public function verficausuario(){
+
 		 $email_cliente = $this->input->post("email_cliente");
 
 		if($this->Personas_model->exists_correo($email_cliente)){
@@ -20,23 +21,23 @@ class Acceso extends CI_Controller
 			session_regenerate_id();
 			$token = md5(session_id());
 			$idcliente =  $this->Personas_model->update_token($email_cliente,$token) ;
-			var_dump($idcliente);
-			 $obj["resultado"] = $idcliente != 0;
+			// var_dump($idcliente);
+
+			$obj["resultado"] = $idcliente != 0;
 			 
 			$obj['mensaje'] = $obj["resultado"] ?
 			"Access allowed" : "Access disallowed";
             if ($obj["resultado"]) {
-				echo "bien";
+		
                 $obj["token"] = $token;
 				$obj["cliente"] = $this->Personas_model->get_cliente($idcliente);
             }
 			else{
-				echo "eror";
 				$obj["resultado"] = false;
 				$obj["mensaje"] = "Email isn't registered";
 			}
 		}
-		//  echo json_encode($obj);
+		   echo json_encode($obj);
 	}
 
 
@@ -70,7 +71,7 @@ class Acceso extends CI_Controller
 			if($idcliente != 0 ){
 				$obj["idcliente"] = $idcliente;
 				$obj["resultado"] = true;
-				$obj["mensaje"] = "Costumer inserted";
+				$obj["mensaje"] = "Costumer inserted correctly";
 			}
 			else{
 				$obj["resultado"] = false;
@@ -81,16 +82,17 @@ class Acceso extends CI_Controller
 		}
 
 
-		public function cerrar () {
-			verifica_sesion( $this->session->email_cliente, session_id() );
+		// public function cierrasesion($email_cliente,$token) {
+		// 	verifica_sesion($email_cliente,$token );
 	
-			$this->session->unset_userdata("idcliente");
-			$this->session->unset_userdata("nombre_cliente");
-			$this->session->unset_userdata("email_cliente");
-			$this->session->unset_userdata("token");
-	
-			redirect( base_url() );
-		}
+		// 	$this->session->unset_userdata(array(
+		// 		"token",
+		// 		"idcliente",
+		// 		"email_cliente",
+		// 		"nombre_cliente"
+		// 	));
+		// 	redirect( base_url()."home/" );
+		// }
 
 
 
