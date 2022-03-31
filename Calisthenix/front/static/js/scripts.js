@@ -44,21 +44,21 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-$(document).ready(function() {
-    var formulario = document.querySelector("#contactForm");
-    var telefono    = document.querySelector(".telnumber");
-    formulario.phone.addEventListener('keyup',(e) => {
-        let telefonoc = e.target.value;
-       formulario.phone.value = telefonoc.replace(/\D/g, '').trim();
-    });
+// $(document).ready(function() {
+//     var formulario = document.querySelector("#contactForm");
+//     var telefono    = document.querySelector(".telnumber");
+//     formulario.phone.addEventListener('keyup',(e) => {
+//         let telefonoc = e.target.value;
+//        formulario.phone.value = telefonoc.replace(/\D/g, '').trim();
+//     });
 
-    formulario.name.addEventListener('keyup',(e) => {
-        let nombrec = e.target.value;
-       formulario.name.value = nombrec.replace(/\d/g, '').trim();
-    });
+//     formulario.name.addEventListener('keyup',(e) => {
+//         let nombrec = e.target.value;
+//        formulario.name.value = nombrec.replace(/\d/g, '').trim();
+//     });
 
     
-});
+// });
 
 
 

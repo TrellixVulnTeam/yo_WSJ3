@@ -15,28 +15,37 @@ class Acceso extends CI_Controller
     public function verficausuario(){
 
 		 $email_cliente = $this->input->post("email_cliente");
-
-		if($this->Personas_model->exists_correo($email_cliente)){
-			//crear token de sesion
-			session_regenerate_id();
-			$token = md5(session_id());
-			$idcliente =  $this->Personas_model->update_token($email_cliente,$token) ;
-			// var_dump($idcliente);
-
-			$obj["resultado"] = $idcliente != 0;
-			 
-			$obj['mensaje'] = $obj["resultado"] ?
-			"Access allowed" : "Access disallowed";
-            if ($obj["resultado"]) {
-		
-                $obj["token"] = $token;
-				$obj["cliente"] = $this->Personas_model->get_cliente($idcliente);
-            }
-			else{
-				$obj["resultado"] = false;
-				$obj["mensaje"] = "Email isn't registered";
+		 $password_cliente = $this->input->post("password_cliente");
+		if($this->Personas_model->verifica_cliente($email_cliente,$password_cliente)){
+			if($this->Personas_model->exists_correo($email_cliente)){
+				//crear token de sesion
+				session_regenerate_id();
+				$token = md5(session_id());
+				$idcliente =  $this->Personas_model->update_token($email_cliente,$token) ;
+				// var_dump($idcliente);
+	
+				$obj["resultado"] = $idcliente != 0;
+				 
+				$obj['mensaje'] = $obj["resultado"] ?
+				"Access allowed" : "Access disallowed";
+				if ($obj["resultado"]) {
+			
+					$obj["token"] = $token;
+					$obj["cliente"] = $this->Personas_model->get_cliente($idcliente);
+				}
+				else{
+					$obj["resultado"] = false;
+					$obj["mensaje"] = "Email isn't registered";
+				}
 			}
 		}
+
+		else{
+			$obj["resultado"] = false;
+			$obj['mensaje'] = "Password doesn't match";
+		}
+
+
 		   echo json_encode($obj);
 	}
 

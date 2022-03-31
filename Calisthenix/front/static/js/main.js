@@ -124,39 +124,39 @@ function iniciarSesion(){
     $('#loginM').modal({show:true});
 }
 
-async function cerrarSesion(){
-    this.event.preventDefault();
-    let url = 'bd/enlaces/cerrar_sesion_cliente.php';
-    let postData = {
-        id_usuario:id_usuario
-    };
-    $.post(url,postData, function(response){
-        datos = JSON.parse(response);
-        let status        = datos.status;
-        let message       = datos.message;
+// async function cerrarSesion(){
+//     this.event.preventDefault();
+//     let url = 'bd/enlaces/cerrar_sesion_cliente.php';
+//     let postData = {
+//         id_usuario:id_usuario
+//     };
+//     $.post(url,postData, function(response){
+//         datos = JSON.parse(response);
+//         let status        = datos.status;
+//         let message       = datos.message;
         
-        if(status == "error"){
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: message,
-            }).then(() => {
-                $(location).attr('href','index.php');
-            });
-        }
-        else{
-            Swal.fire(
-                'Correct!',
-                message,
-                'success'
-            ).then(() => {
-                $(location).attr('href','index.php');
-            });
-        }
-    });
+//         if(status == "error"){
+//             Swal.fire({
+//                 icon: 'error',
+//                 title: 'Oops...',
+//                 text: message,
+//             }).then(() => {
+//                 $(location).attr('href','index.php');
+//             });
+//         }
+//         else{
+//             Swal.fire(
+//                 'Correct!',
+//                 message,
+//                 'success'
+//             ).then(() => {
+//                 $(location).attr('href','index.php');
+//             });
+//         }
+//     });
     
     
-}
+// }
 
 function carrito_de_compras(){
     this.event.preventDefault();
@@ -204,61 +204,6 @@ inputs.forEach(input=>{
 }
 );
 
-// $('#newModalTableForm').submit(function(e){
-//     e.preventDefault(); 
-//     alert("ups");
-    
-//     let url =  appData.ws_url + "acceso/verficausuario/";
-//     let postData = {
-//         email_cliente: $('#correoelectronico').val(),
-//         password_cliente: $('#pass').val()
-//     };
-//     if(postData.email == ""){
-//         Swal.fire({
-//             icon: 'info',
-//             title: 'Oops...',
-//             text: 'Debes introducir tu correo electrónico!',
-//         });
-//     }
-//     else if(postData.password == ""){
-//         Swal.fire({
-//             icon: 'info',
-//             title: 'Oops...',
-//             text: 'Debes introducir tu contraseña!',
-//         });
-//     }
-//     else{
-//         $.post(url,postData, function(response){
-//             //reset formulario
-//             $('#newModalTableForm').trigger('reset');
-
-//             alert(response);
-//             // datos = JSON.parse(response);
-//             // let status        = datos.status;
-//             // let message       = datos.message;
-            
-//             // if(status == "error"){
-//             //     Swal.fire({
-//             //         icon: 'error',
-//             //         title: 'Oops...',
-//             //         text: message,
-//             //     }).then(() => {
-//             //         document.getElementById("correoelectronico").value = "";
-//             //         document.getElementById("pass").value = "";
-//             //     });
-//             // }
-//             // else{
-//             //     Swal.fire(
-//             //         'Correct!',
-//             //         message,
-//             //         'success'
-//             //     ).then(() => {
-//             //         $(location).attr('href','index.php');
-//             //     });
-//             // }
-//         });
-//     }
-// });
 
 async function borrar_articulo(idarticulo,cantidad){
     await carrito_de_usuario_borrar_articulo(idarticulo);
@@ -303,145 +248,116 @@ function validarEmail(email){
     return re.test(String(email).toLowerCase());
 }
 
-async function registrarUsuarioNuevo(){
-    //validad los campos 
-    let nombre_usuario = document.getElementById("Nombreuser").value.trim();
-    let telefono_usuario = document.getElementById("NumeroUser").value.trim();
-    let email_usuario  = document.getElementById("emailUser").value.trim();
-    let pass_usuario  = document.getElementById("passwordUser").value.trim();
-    let ciudad        = document.getElementById("ciudadUser").value.trim();
-    let direccion_user = document.getElementById("direccionUser").value.trim();
-    let exterior_usuario = document.getElementById("numExterior").value.trim();
-    let rfc_usuario = document.getElementById("RFCUser").value.trim();
-    let errores = 0;
+// async function registrarUsuarioNuevo(){
+//     alert("sdrf");
+//     //validad los campos 
+//     let nombre_usuario = document.getElementById("Nombreuser").value.trim();
+//     let apellidos_usuario = document.getElementById("ApellidoUser").value.trim();
+//     let telefono_usuario  = document.getElementById("NumeroUser").value.trim();
+//     let email_usuario  = document.getElementById("emailUser").value.trim();
+//     let pass_usuario = document.getElementById("passworduser").value.trim();
+//     let ciudad = document.getElementById("ciudadUser").value.trim();
 
-    if(nombre_usuario.length <= 5){
-        document.getElementById("divNombreuser").classList.remove("success-input");
-        document.getElementById("divNombreuser").classList.add("error-input");
-        errores++;
-    }
-    else{
-        document.getElementById("divNombreuser").classList.add("success-input");
-        document.getElementById("divNombreuser").classList.remove("error-input");
-    }
+//     let errores = 0;
 
-    if(telefono_usuario.length <= 6){
-        document.getElementById("divNumeroUser").classList.remove("success-input");
-        document.getElementById("divNumeroUser").classList.add("error-input");
-        errores++;
-    }
-    else{
-        document.getElementById("divNumeroUser").classList.add("success-input");
-        document.getElementById("divNumeroUser").classList.remove("error-input");
-    }
+//     if(nombre_usuario.length <= 5){
+//         document.getElementById("divNombreuser").classList.remove("success-input");
+//         document.getElementById("divNombreuser").classList.add("error-input");
+//         errores++;
+//     }
+//     else{
+//         document.getElementById("divNombreuser").classList.add("success-input");
+//         document.getElementById("divNombreuser").classList.remove("error-input");
+//     }
 
-    if(email_usuario.length == 0){
-        document.getElementById("divemailUser").classList.remove("success-input");
-        document.getElementById("divemailUser").classList.add("error-input");
-        errores++;
-    }
-    else{
-        a = validarEmail(email_usuario);
-        if(a == false){
-            document.getElementById("divemailUser").classList.remove("success-input");
-            document.getElementById("divemailUser").classList.add("error-input");
-            errores++;
-        }
-        else{
-            document.getElementById("divemailUser").classList.add("success-input");
-            document.getElementById("divemailUser").classList.remove("error-input");
-        }
-    }
+//     if(apellidos_usuario.length <= 5){
+//         document.getElementById("divNombreuser").classList.remove("success-input");
+//         document.getElementById("divNombreuser").classList.add("error-input");
+//         errores++;
+//     }
+//     else{
+//         document.getElementById("divNombreuser").classList.add("success-input");
+//         document.getElementById("divNombreuser").classList.remove("error-input");
+//     }
+//     if(telefono_usuario.length <= 6){
+//         document.getElementById("divNumeroUser").classList.remove("success-input");
+//         document.getElementById("divNumeroUser").classList.add("error-input");
+//         errores++;
+//     }
+//     else{
+//         document.getElementById("divNumeroUser").classList.add("success-input");
+//         document.getElementById("divNumeroUser").classList.remove("error-input");
+//     }
 
-    if(pass_usuario.length <= 6){
-        document.getElementById("divpasswordUser").classList.remove("success-input");
-        document.getElementById("divpasswordUser").classList.add("error-input");
-        errores++;
-    }
-    else{
-        document.getElementById("divpasswordUser").classList.add("success-input");
-        document.getElementById("divpasswordUser").classList.remove("error-input");
-    }
+//     if(email_usuario.length == 0){
+//         document.getElementById("divemailUser").classList.remove("success-input");
+//         document.getElementById("divemailUser").classList.add("error-input");
+//         errores++;
+//     }
+//     else{
+//         a = validarEmail(email_usuario);
+//         if(a == false){
+//             document.getElementById("divemailUser").classList.remove("success-input");
+//             document.getElementById("divemailUser").classList.add("error-input");
+//             errores++;
+//         }
+//         else{
+//             document.getElementById("divemailUser").classList.add("success-input");
+//             document.getElementById("divemailUser").classList.remove("error-input");
+//         }
+//     }
 
-    if(ciudad.length <= 3){
-        document.getElementById("divciudadUser").classList.remove("success-input");
-        document.getElementById("divciudadUser").classList.add("error-input");
-        errores++;
-    }
-    else{
-        document.getElementById("divciudadUser").classList.add("success-input");
-        document.getElementById("divciudadUser").classList.remove("error-input");
-    }
+//     if(pass_usuario.length <= 6){
+//         document.getElementById("divpasswordUser").classList.remove("success-input");
+//         document.getElementById("divpasswordUser").classList.add("error-input");
+//         errores++;
+//     }
+//     else{
+//         document.getElementById("divpasswordUser").classList.add("success-input");
+//         document.getElementById("divpasswordUser").classList.remove("error-input");
+//     }
 
-    if(direccion_user.length <= 6){
-        document.getElementById("divdireccionUser").classList.remove("success-input");
-        document.getElementById("divdireccionUser").classList.add("error-input");
-        errores++;
-    }
-    else{
-        document.getElementById("divdireccionUser").classList.add("success-input");
-        document.getElementById("divdireccionUser").classList.remove("error-input");
-    }
-    if(exterior_usuario.length == 0){
-        document.getElementById("divnumExterior").classList.remove("success-input");
-        document.getElementById("divnumExterior").classList.add("error-input");
-        errores++;
-    }
-    else{
-        document.getElementById("divnumExterior").classList.add("success-input");
-        document.getElementById("divnumExterior").classList.remove("error-input");
-    }
-    if(rfc_usuario.length == 0){
-        document.getElementById("divRFCUser").classList.remove("success-input");
-        document.getElementById("divRFCUser").classList.add("error-input");
-        errores++;
-    }
-    else{
-        document.getElementById("divRFCUser").classList.add("success-input");
-        document.getElementById("divRFCUser").classList.remove("error-input");
-    }
+//     if(ciudad.length <= 3){
+//         document.getElementById("divciudadUser").classList.remove("success-input");
+//         document.getElementById("divciudadUser").classList.add("error-input");
+//         errores++;
+//     }
+//     else{
+//         document.getElementById("divciudadUser").classList.add("success-input");
+//         document.getElementById("divciudadUser").classList.remove("error-input");
+//     }
 
-    if(errores == 0){
-        var formData = new FormData();
-        formData.append('nombre',nombre_usuario.trim());
-        formData.append('telefono',telefono_usuario.trim());
-        formData.append('email',email_usuario.trim());
-        formData.append('password',pass_usuario.trim());
-        formData.append('ciudad',ciudad.trim());
-        formData.append('direccion',direccion_user.trim());
-        formData.append('noexterior',exterior_usuario.trim());
-        formData.append('rfc',rfc_usuario.trim());
+//     if(direccion_user.length <= 6){
+//         document.getElementById("divdireccionUser").classList.remove("success-input");
+//         document.getElementById("divdireccionUser").classList.add("error-input");
+//         errores++;
+//     }
+//     else{
+//         document.getElementById("divdireccionUser").classList.add("success-input");
+//         document.getElementById("divdireccionUser").classList.remove("error-input");
+//     }
+//     if(exterior_usuario.length == 0){
+//         document.getElementById("divnumExterior").classList.remove("success-input");
+//         document.getElementById("divnumExterior").classList.add("error-input");
+//         errores++;
+//     }
+//     else{
+//         document.getElementById("divnumExterior").classList.add("success-input");
+//         document.getElementById("divnumExterior").classList.remove("error-input");
+//     }
+  
 
-        $.ajax({
-            url: 'bd/enlaces/registrar_cliente.php',
-            type: 'post',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                let respuesta = JSON.parse(response);
-                let status   = respuesta.status;
-                let message  = respuesta.message;
-                if(status == "error"){
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: message,
-                    }).then(() => {
-                        $(location).attr('href','index.php');
-                    });
-                }
-                else{
-                    Swal.fire(
-                        'Correct!',
-                        message,
-                        'success'
-                    ).then(() => {
-                        $(location).attr('href','index.php');
-                    });
-                }
-            }
-        });
-        return false;
-    }
-}
+//     if(errores == 0){
+//         var formData = new FormData();
+//         formData.append('nombre',nombre_usuario.trim());
+//         formData.append('telefono',apellidos_usuario.trim());
+//         formData.append('email',telefono_usuario.trim());
+//         formData.append('password',email_usuario.trim());
+//         formData.append('ciudad',pass_usuario.trim());
+//         formData.append('direccion',ciudad.trim());
+
+
+
+//         // return false;
+//     }
+// }
