@@ -26,8 +26,6 @@ class Home extends CI_Controller {
 
 
     public function inicio($idcliente, $nombre_cliente, $email_cliente,$apellidos_cliente,$direccion,$token){
-
-		
         $this->session->set_userdata("idcliente", $idcliente);
         $this->session->set_userdata("nombre_cliente", $nombre_cliente);
         $this->session->set_userdata("email_cliente", $email_cliente);
@@ -37,6 +35,9 @@ class Home extends CI_Controller {
         redirect(base_url()."home/index/$idcliente/$token");
     }
 
+	public function admin(){
+		$this->load->view('admin');
+	}
 
 
     public function cierrasesion($correo,$token){

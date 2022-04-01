@@ -166,6 +166,15 @@ function carrito_de_compras(){
     });
 }
 
+
+
+
+
+
+
+
+
+
 function show(a){
     var x=document.getElementById(a);
     var c=x.nextElementSibling

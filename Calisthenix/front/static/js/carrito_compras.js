@@ -1,4 +1,7 @@
-var id_usuario       = document.getElementById("id_usuario").value.trim();
+ alert("carrito de compras");
+
+
+var id_usuario       = appData.idcliente;
 var total = 0;
 var lenguaje = {
       "processing": "Procesando...",

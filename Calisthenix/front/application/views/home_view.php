@@ -41,6 +41,7 @@
         <!--- Datatables Responsive --->
         <link rel="stylesheet" type="text/css" href="<?=base_url()?>static/vendor/datatables/css/responsive/responsive.dataTables.min.css"/> 
         <link href="<?=base_url()?>static/css/styles.css" rel="stylesheet" />
+        <link href="<?=base_url()?>static/css/select.css" rel="stylesheet" />
         
         <link rel="apple-touch-icon" sizes="180x180" href="<?=base_url()?>static/assets/favicon_io/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="<?=base_url()?>static/assets/favicon_io/favicon-32x32.png">
@@ -49,10 +50,7 @@
         
         <meta name="msapplication-TileColor" content="#00aba9">
         <meta name="theme-color" content="#ffffff">
-        
-        
-       
-        
+        <script src='<?=base_url()?>static/node_modules/jquery/jquery-3.6.0.min.js'></script>
         <script>
         var appData = {
             base_url  : "<?=base_url()?>",
@@ -66,9 +64,6 @@
         };
         </script>
         
-        
-        
-        
         </head>
         <body id="page-top">
         <!-- Navigation-->
@@ -81,7 +76,7 @@
         
         <div class="d-flex justify-content-between mt-4 mb-4">
         
-            <?php if(empty($this->session->userdata('idcliente'))):?>
+        <?php if(empty($this->session->userdata('idcliente'))):?>
             <strong style="color:white;padding-right: 20px; justify-content:baseline; align-items:baseline;" >
             Don't you have an account?  
             </strong>
@@ -96,31 +91,31 @@
                 <div class="navbarsession">
                 <ul class="navbar-nav">
                 <li class="nav-item">
-    
-                        
-                        <div id="mensaje" class="ml-1 mt-3 col col-md-6">
-                        <?php
-                        
-                        if($this->session->flashdata("tipo") != NULL &&
-                        $this->session->flashdata("mensaje")  != NULL):
-                        alerta(
-                            $this->session->flashdata("tipo"),
-                            $this->session->flashdata("mensaje")
-                        );
-                    endif;
-                    ?>
-                    </div>
+                
+                
+                <div id="mensaje" class="ml-1 mt-3 col col-md-6">
+                <?php
+                
+                if($this->session->flashdata("tipo") != NULL &&
+                $this->session->flashdata("mensaje")  != NULL):
+                alerta(
+                    $this->session->flashdata("tipo"),
+                    $this->session->flashdata("mensaje")
+                );
+            endif;
+            ?>
+            </div>
+            
+            </li>
+            </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+            <?php if(empty($this->session->userdata('idcliente'))):?>
+                <li class="nav-item">  <a href="#" class="nav-link" onclick="return iniciarSesion()"><i class="fas fa-user me-2" ></i> Login</a> </li>
+                <?php elseif(!empty($this->session->userdata('idcliente'))):?>
+                    <li class="nav-item"><a class="nav-link"  <a href="<?= base_url() ?>home/cierrasesion/<?=$this->session->email_cliente?>/<?=$this->session->token?>"><i class="fas fa-user me-2" ></i> Log out</a></li>
                     
-                    </li>
-                    </ul>
-                    </div>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <?php if(empty($this->session->userdata('idcliente'))):?>
-                    <li class="nav-item">  <button class="btn btn-link" onclick="return iniciarSesion()" id="modal-sesion"><a href="#" class="nav-link" onclick="return false;"><i class="fas fa-user me-2" ></i> Login</a>     </button></li>
-                    <?php elseif(!empty($this->session->userdata('idcliente'))):?>
-                        <li class="nav-item"><a class="nav-link"  <a href="<?= base_url() ?>home/cierrasesion/<?=$this->session->email_cliente?>/<?=$this->session->token?>">Log out</a></li>
-
                     <?php endif;?>
                     <li class="nav-item"><a class="nav-link" href="#services">Servicios</a></li>
                     <li class="nav-item"><a class="nav-link" href="#portfolio">Productos</a></li>
@@ -132,26 +127,21 @@
                     <div class="navbarcarrito">
                     <ul class="navbar-nav">
                     <li class="nav-item">
-                    <button class="btn  btn-social" id = "carrito" onclick="return iniciarSesion()">
                     
-                    
-                    <a href="#" onclick="return false;" class="nav-link"><i class="fas fa-shopping-cart fa-lg"></i></a> 
-                    </button>
-                    <span class="badge badge-notify" id="cantidad-cart">0</span>
-                    <!-- <?php
-                    // if($estatusSession == 0){
-                        //     echo('<button class="btn  btn-social" id = "carrito" onclick="return iniciarSesion()">
-                        //     <a href="#" onclick="return false;" class="nav-link"><i class="fas fa-shopping-cart fa-lg"></i></a> 
-                        // </button>
-                        // <span class="badge badge-notify" id="cantidad-cart">0</span>');
-                        // }
-                        // else{
-                            //     echo('<button class="btn  btn-social" id = "carrito" onclick="return carrito_de_compras()">
-                            //         <a href="#" onclick="return false;" class="nav-link"><i class="fas fa-shopping-cart fa-lg"></i></a> 
-                            //     </button>
-                            //     <span class="badge badge-notify" id="cantidad-cart">'.$carrito.'</span>');
-                            // }
-                            ?>  -->
+                    <?php  if(!empty($this->session->userdata('idcliente'))):?>
+                        
+                        <button class="btn btn-social">
+                        <a href="#"class="nav-link" id = "carritopro" ><i class="fas fa-shopping-cart fa-lg"></i></a> 
+                        </button>
+                        <span class="badge badge-notify" id="cantidad-cart">0</span>
+                        
+                        <?php elseif(empty($this->session->userdata('idcliente'))):?>
+                            
+                            <button class="btn  btn-social" onclick="return iniciarSesion()">
+                            <a href="#"  class="nav-link"><i class="fas fa-shopping-cart fa-lg"></i></a> 
+                            </button>
+                            <span class="badge badge-notify" id="cantidad-cart">Login</span>
+                            <?php endif;?>
                             </li>
                             </ul>
                             </div>
@@ -237,25 +227,15 @@
                             <div class="col-12">
                             <div class="row">
                             <div class = "col-md-4">
-                            <select name="sucursal" class = "custom-select select_sucursal" id="sucursales" name = "sucursales">
-                            <!-- <?php
-                            // if((sizeof($sucursales)) > 0){
-                                //     for ($i=0; $i <= (sizeof($sucursales))-1;$i++){
-                                    //         $id_suc = $sucursales[$i]["id_suc"];
-                                    //         $email_suc = $sucursales[$i]["email_suc"];
-                                    //         $estado = $sucursales[$i]["estado"];
-                                    //         $matriz = $sucursales[$i]["Matriz"];
-                                    //         if($matriz == '1'){
-                                        //             echo "<option value='" . $id_suc. "' selected='selected'>" . "Sucursal: ".utf8_encode($estado) . "</option>";
-                                        //             $sucursal_actual = $estado;
-                                        //         }
-                                        //         else{
-                                            //             echo "<option value='" . $id_suc. "'>" . "Sucursal: ".utf8_encode($estado) . "</option>";
-                                            //         }
-                                            //     }
-                                            // }
-                                            ?> -->
-                                            </select> 
+                            
+                            <div class="select" style="margin-left:50%">
+                            <select id="select_categorias">
+                            <option selected disabled >All</option>
+                      
+                            </select>
+                            </div>
+                    
+             
                                             </div>
                                             
                                             </div>
@@ -265,59 +245,84 @@
                                             <section class="page-section bg-light">
                                             <div class="container">
                                             <div class="text-center">
-                                            <!-- <h2 class="section-heading text-uppercase" id = "titulo_productos">Productos <?php echo(" ".$sucursal_actual);?></h2> -->
+                                            
+                                            <!-- PRODUCTOS -->
+                                            
+                                            
+                                            <h2 class="section-heading text-uppercase" id = "titulo_categoria"></h2>
+                                            
+                                            
+                                            
+                                            
                                             <h2 class="section-heading text-uppercase" id = "titulo_productos">Productos</h2>
                                             <h3 class="section-subheading text-muted">Conoce nuestro catalogo.</h3>
                                             </div>
+
                                             <div class="row" id="portfolio">
-                                            <!-- <?php
-                                            // foreach ($productos_disponibles as $row){
-                                                //     $id_prod     = $row["id_prod"];
-                                                //     $descripcion = $row["descripcion_prod"];
-                                                //     $img_produc  = $row["img_producto"];
-                                                //     $categoria   = $row["categoria_prod"];
-                                                //     $precio      = $row["precio_prod"];
-                                                //     $stock       = $row["stock"];
-                                                //     $class       = $stock <= 0 ? "producto_agotado" : ($stock <= 5 ? "producto_por_agotar" : "producto_existencia");
-                                                //     $text        = $stock <= 0 ? "Stock Agotado" : ($stock <= 5 ? "Stock disponible" : "Stock disponible");
-                                                //     $icono       = $stock <= 0 ? "<i class='fas fa-store-slash me-2'></i>" : ($stock <= 5 ? "<i class='fas fa-shopping-bag me-2'></i>" : "<i class='fas fa-shopping-bag me-2'></i>");
-                                                //     // crear el item 
-                                                //     echo('<div class="col-lg-4 col-sm-6 mb-4">
-                                                //             <div class="portfolio-item">
-                                                //                 <a class="portfolio-link"  href="#" onclick="return false;">
-                                                //                 <div class="portfolio-hover '.$class.'" id = "div'.$id_prod.'">
-                                                //                     <form >
-                                                //                         <div class="portfolio-hover-content" id = "text'.$id_prod.'">
-                                                //                             '.$icono.$text.'
-                                                //                         </div>
-                                                //     ');
-                                                //     if($stock != 0){
-                                                    //         echo('
-                                                    //                         <div class="cantidad_disponible mt-2">
-                                                    //                                     <span>Cantidad: </span>
-                                                    //                                     <span id = "'.$id_prod.'" class = "cantidades_stock">'.$stock.' piezas</span>
-                                                    //                                 </div>
-                                                    //                                 <div class="text-center mt-4">
-                                                    //                                     <button class="btn btn-info btn-social"  id = "button'.$id_prod.'" onclick="return agregarCarrito(\'' . $id_prod . '\') ">
-                                                    //                                         <i class="fas fa-plus-circle"></i>
-                                                    //                                     </button>
-                                                    //                                 </div>
-                                                    //         ');
-                                                    //     }
-                                                    //         echo(' 
-                                                    //                     </form>
-                                                    //                 </div>
-                                                    //                 <img class="img-fluid" src="'.$img_produc.'" alt="..." />
-                                                    //                 </a>
-                                                    //                 <div class="portfolio-caption">
-                                                    //                     <div class="portfolio-caption-heading">'.$categoria.'</div>
-                                                    //                     <div class="portfolio-caption-subheading text-muted">'.$descripcion.'</div>
-                                                    //                 </div>
-                                                    //             </div>
-                                                    //         </div>               
-                                                    //         ');
-                                                    // }
-                                                    ?> -->
+                    <!-- <div class="col-lg-4 col-sm-6 mb-4"> -->
+                        <!-- Portfolio item 1-->
+                        <!-- <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Threads</div>
+                                <div class="portfolio-caption-subheading text-muted">Illustration</div>
+                            </div>
+                        </div>
+                    </div> -->
+                                            
+                        <!-- <?php
+                        // foreach ($productos_disponibles as $row){
+                            //     $id_prod     = $row["id_prod"];
+                            //     $descripcion = $row["descripcion_prod"];
+                            //     $img_produc  = $row["img_producto"];
+                            //     $categoria   = $row["categoria_prod"];
+                            //     $precio      = $row["precio_prod"];
+                            //     $stock       = $row["stock"];
+                            //     $class       = $stock <= 0 ? "producto_agotado" : ($stock <= 5 ? "producto_por_agotar" : "producto_existencia");
+                            //     $text        = $stock <= 0 ? "Stock Agotado" : ($stock <= 5 ? "Stock disponible" : "Stock disponible");
+                            //     $icono       = $stock <= 0 ? "<i class='fas fa-store-slash me-2'></i>" : ($stock <= 5 ? "<i class='fas fa-shopping-bag me-2'></i>" : "<i class='fas fa-shopping-bag me-2'></i>");
+                            //     // crear el item 
+                            //     echo('<div class="col-lg-4 col-sm-6 mb-4">
+                            //             <div class="portfolio-item">
+                            //                 <a class="portfolio-link"  href="#" onclick="return false;">
+                            //                 <div class="portfolio-hover '.$class.'" id = "div'.$id_prod.'">
+                            //                     <form >
+                            //                         <div class="portfolio-hover-content" id = "text'.$id_prod.'">
+                            //                             '.$icono.$text.'
+                            //                         </div>
+                            //     ');
+                            //     if($stock != 0){
+                                //         echo('
+                                //                         <div class="cantidad_disponible mt-2">
+                                //                                     <span>Cantidad: </span>
+                                //                                     <span id = "'.$id_prod.'" class = "cantidades_stock">'.$stock.' piezas</span>
+                                //                                 </div>
+                                //                                 <div class="text-center mt-4">
+                                //                                     <button class="btn btn-info btn-social"  id = "button'.$id_prod.'" onclick="return agregarCarrito(\'' . $id_prod . '\') ">
+                                //                                         <i class="fas fa-plus-circle"></i>
+                                //                                     </button>
+                                //                                 </div>
+                                //         ');
+                                //     }
+                                //         echo(' 
+                                //                     </form>
+                                //                 </div>
+                                //                 <img class="img-fluid" src="'.$img_produc.'" alt="..." />
+                                //                 </a>
+                                //                 <div class="portfolio-caption">
+                                //                     <div class="portfolio-caption-heading">'.$categoria.'</div>
+                                //                     <div class="portfolio-caption-subheading text-muted">'.$descripcion.'</div>
+                                //                 </div>
+                                //             </div>
+                                //         </div>               
+                                //         ');
+                                // }
+                                ?> -->
                                                     </div>
                                                     </div>
                                                     </section>
@@ -569,11 +574,12 @@
                                                     
                                                     -->
                                                     
-                                                    
-                                                    <script type="text/javascript" src = "<?=base_url()?>static/js/main.js"></script>
-                                                    <script src="<?=base_url()?>static/vendor/sbforms.js"></script>
-                                                    <script src="<?=base_url()?>static/js/mensajes.js"></script>
-                                                    <script src="<?=base_url()?>static/js/sesion.js"></script>
-                                                    </body>
-                                                    </html>
-                                                    
+
+<script type="text/javascript" src = "<?=base_url()?>static/js/main.js"></script>
+<script src="<?=base_url()?>static/vendor/sbforms.js"></script>
+<script src="<?=base_url()?>static/js/mensajes.js"></script>
+<script src="<?=base_url()?>static/js/sesion.js"></script>
+<script src="<?=base_url()?>static/js/carrito.js"></script>
+<script src="<?=base_url()?>static/js/productos.js"></script>
+</body>
+</html>

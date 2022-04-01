@@ -91,53 +91,6 @@ class Acceso extends CI_Controller
 		}
 
 
-		// public function cierrasesion($email_cliente,$token) {
-		// 	verifica_sesion($email_cliente,$token );
-	
-		// 	$this->session->unset_userdata(array(
-		// 		"token",
-		// 		"idcliente",
-		// 		"email_cliente",
-		// 		"nombre_cliente"
-		// 	));
-		// 	redirect( base_url()."home/" );
-		// }
-
-
-
-	// public function registracliente(){
-		// $nombre_cliente = $this->input->post("nombre") ?? "";
-		// $email_cliente = $this->input->post("correo") ?? "";
-	
-        // if($correo =="")die();
-		
-		// if($this->Personas_model->exists_correo($email_cliente)){
-		// 	$obj["resultado"] = false;
-		// 	$obj["mensaje"] = "Email already registered";
-		// }
-	
-		// else{
-		// 	$data = array(
-		// 		"nombre" => $nombre,
-		// 		"correo" => $correo,
-		// 		"telefono" => $telefono
-		// 	);
-
-		// 	$idjugador = $this->Gato_model->insert_jugador($data);
-
-		// 	if($idjugador != 0 ){
-		// 		$obj["idjugador"] = $idjugador;
-		// 		$obj["resultado"] = true;
-		// 		$obj["mensaje"] = "Player inserted";
-		// 	}
-		// 	else{
-		// 		$obj["resultado"] = false;
-		// 		$obj["mensaje"] = "Imposible to insert player";
-		// 	}
-		// }
-		// echo json_encode($obj);
-		// }
-
     public function inicio($email_cliente, $password_cliente)
     {
         // $correo      = $this->input->post("correoelectronico");
