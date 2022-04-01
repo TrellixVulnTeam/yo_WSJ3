@@ -53,9 +53,4 @@
      background: var(--background-gradient);
   }
 
-  a {
-    font-weight: bold;
-    text-decoration: none;
-    padding: .25em;
-    border-radius: .25em;
-  }
+  

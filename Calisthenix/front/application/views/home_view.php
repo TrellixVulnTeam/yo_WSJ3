@@ -227,13 +227,7 @@
                             <div class="col-12">
                             <div class="row">
                             <div class = "col-md-4">
-                            
-                            <div class="select" style="margin-left:50%">
-                            <select id="select_categorias">
-                            <option selected disabled >All</option>
-                      
-                            </select>
-                            </div>
+                
                     
              
                                             </div>
@@ -244,18 +238,24 @@
                                             </section>
                                             <section class="page-section bg-light">
                                             <div class="container">
-                                            <div class="text-center">
+                                            <div class="text-center" style="display:flex; justify-content:flex-start">
                                             
                                             <!-- PRODUCTOS -->
                                             
+                                                        
+                                            <div class="select">
+                                            <select id="select_categorias">
+                                            <option selected  >All</option>
+                                    
+                                            </select>
+                                            </div>
+
                                             
-                                            <h2 class="section-heading text-uppercase" id = "titulo_categoria"></h2>
-                                            
-                                            
-                                            
-                                            
-                                            <h2 class="section-heading text-uppercase" id = "titulo_productos">Products</h2>
-                                            <h3 class="section-subheading text-muted">take a look to our catalog</h3>
+                                            <div class="display-block"style="display:inline-block">
+                                                <h2 class="section-heading text-uppercase"style="margin-left: 100%;" id = "titulo_productos">Products
+                                                <h3 class="section-subheading text-muted"style="margin-left: 100%;width:max-content">&nbsp; &nbsp; take a look to our catalog</h3></h2>
+                                             
+                                        </div>
                                             </div>
 
                                             <div class="row" id="portfolio">
@@ -534,6 +534,49 @@
                                                     </div>
                                                     </div>
                                                     </div>
+
+
+
+
+
+
+
+                                                     <!-- Portfolio item 1 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase"id="ProjectName">Project Name</h2>
+                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/1.jpg" alt="..." />
+                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Client:</strong>
+                                            Threads
+                                        </li>
+                                        <li>
+                                            <strong>Category:</strong>
+                                            Illustration
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-times me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio item 2 modal popup-->
                                                     
                                                     <!-- <div class="aviso-cookies" id="aviso-cookies">
                                                     <img class="galleta" src="<?=base_url()?>static/assets/img/cookie.svg" alt="Galleta">

@@ -11474,6 +11474,8 @@ header.masthead .masthead-heading {
   justify-content: center;
   opacity: 0;
   transition: opacity ease-in-out 0.25s;
+  background: rgba(255, 200, 0, 0.9);
+
 }
 
 .producto_existencia{
