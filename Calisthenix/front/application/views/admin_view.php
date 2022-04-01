@@ -302,9 +302,10 @@ var appData = {
 					</tr> 
 				</thead>
 				<tbody id="tbody">
-					
+               
 				</tbody>
 			</table>
+		
 			<div class="clearfix">
 				<div class="hint-text"id="cant">Amount of products: </div>
 			</div>
@@ -315,28 +316,36 @@ var appData = {
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form id="insertar" method="post"name="insertar">
 				<div class="modal-header">						
 					<h4 class="modal-title">Add Employee</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Name</label>
-						<input type="text" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Address</label>
-						<textarea class="form-control" required></textarea>
-					</div>
-					<div class="form-group">
-						<label>Phone</label>
-						<input type="text" class="form-control" required>
-					</div>					
+				<div class="modal-body">	
+				<div class="form-group">
+                <label class="idproducto" ></label>
+                    <input  id='idproducto'type="text" class="form-control">
+                </div>
+				<div class="form-group">
+                <label class="categoria_producto"></label>
+                    <input  id='categoria_producto'type="text" class="form-control">
+                </div>
+				<div class="form-group">
+                <label class="nombre_producto"></label>
+                    <input id='nombre_producto'type="text" class="form-control">
+                </div>
+				<div class="form-group">
+                <label class="descripcion_producto"></label>
+                    <input  id='descripcion_producto'type="text" class="form-control">
+                </div>
+				<div class="form-group">
+                <label class="imagen_producto"></label>
+				<input id='imagen_producto'type="file" id="imagen_producto" name="imagen_producto">
+                </div>
+				<div class="form-group">
+                <label  class="precio_producto"></label>
+                    <input id='precio_producto'type="text" class="form-control">
+                </div>								
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -352,26 +361,10 @@ var appData = {
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">						
-					<h4 class="modal-title">Edit Employee</h4>
+					<h4 class="modal-title">Edit Product</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Name</label>
-						<input type="text" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Address</label>
-						<textarea class="form-control" required></textarea>
-					</div>
-					<div class="form-group">
-						<label>Phone</label>
-						<input type="text" class="form-control" required>
-					</div>					
+				<div class="modal-body">									
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -403,6 +396,7 @@ var appData = {
 	</div>
 </div>
 
+<div id="mensaje" class="ml-1 mt-3 col col-md-6"></div>	
 <script src="<?=base_url()?>static/js/admin.js"></script>
 </body>
 </html>

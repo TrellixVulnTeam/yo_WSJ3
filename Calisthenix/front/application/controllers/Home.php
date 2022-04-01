@@ -35,9 +35,7 @@ class Home extends CI_Controller {
         redirect(base_url()."home/index/$idcliente/$token");
     }
 
-	public function admin(){
-		$this->load->view('admin');
-	}
+	
 
 
     public function cierrasesion($correo,$token){

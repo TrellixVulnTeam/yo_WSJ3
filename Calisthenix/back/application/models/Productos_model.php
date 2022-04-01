@@ -16,5 +16,16 @@ class Productos_model extends CI_Model{
         return $rs->num_rows() > 0 ? $rs->result() : NULL;
     }
 
-
+    public function insertar_productos($data){
+         $this->db->insert("productos",$data);
+         return $this->db->affected_rows() > 0 ? $this->db->insert_id() : 0;
+    }
+    public function exists_producto( $nombre_producto ) {
+        $this->db->where( "nombre_producto", $nombre_producto );
+        $rs = $this->db->get( "productos");
+        return $rs->num_rows() > 0 ? $rs->row()->nombre_producto : 0;
+    }
+    
 }
+
+

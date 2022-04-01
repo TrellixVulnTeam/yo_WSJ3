@@ -254,8 +254,8 @@
                                             
                                             
                                             
-                                            <h2 class="section-heading text-uppercase" id = "titulo_productos">Productos</h2>
-                                            <h3 class="section-subheading text-muted">Conoce nuestro catalogo.</h3>
+                                            <h2 class="section-heading text-uppercase" id = "titulo_productos">Products</h2>
+                                            <h3 class="section-subheading text-muted">take a look to our catalog</h3>
                                             </div>
 
                                             <div class="row" id="portfolio">

@@ -18,20 +18,21 @@ $(document).ready(function(){
             
             
             json.productos.forEach((element,i) => {
-                console.log(appData.base_url+'static/assets/img/calistenia/'+json.categorias["categoria_producto"]+'_'+i+'.jpg');
-                categoriacomas = JSON.stringify(element["categoria_producto"]);
-                nocomillas = JSON.parse(categoriacomas);
-                console.log(nocomillas);
                 
-                alert("n");
+                imagen = JSON.stringify(element["imagen_producto"]);
+                imagen = JSON.parse(imagen);
+                console.log(imagen)
+
+              
                 $( "#portfolio" ).append(
+
                     '<div class="col-lg-4 col-sm-6 mb-4">'+
                        '<div class="portfolio-item">'+
                             '<a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">'+
                                 '<div class="portfolio-hover">'+
                                    '<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>'+
                                 '</div>'+
-                                '<img class="img-fluid" src="'+appData.base_url+'static/assets/img/calistenia/'+nocomillas+'_'+i+'.jpg" alt="..." />'+
+                                '<img class="img-fluid" src="'+appData.base_url+'static/assets/img/build/img/calistenia/'+imagen+'"alt="..." />'+
                            '</a>'+
                             '<div class="portfolio-caption">'+
                                 '<div'+
