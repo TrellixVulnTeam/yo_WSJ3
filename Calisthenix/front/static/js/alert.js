@@ -1,7 +1,7 @@
 var janelaPopUp = new Object();
 janelaPopUp.abre = function(id, classes, titulo, corpo, functionCancelar, functionEnviar, textoCancelar, textoEnviar){
     var cancelar = (textoCancelar !== undefined)? textoCancelar: 'Cancel';
-    var enviar = (textoEnviar !== undefined)? textoEnviar: 'Send';
+    var enviar = (textoEnviar !== undefined)? textoEnviar: 'Continue';
     classes += ' ';
     var classArray = classes.split(' ');
     classes = '';
@@ -20,7 +20,7 @@ janelaPopUp.abre = function(id, classes, titulo, corpo, functionCancelar, functi
         }
     });
     var popFundo = '<div id="popFundo_' + id + '" class="popUpFundo ' + classesFundo + '"></div>'
-    var janela = '<div id="' + id + '" class="popUp ' + classes + '"><h1>' + titulo + "</h1><div><span>" + corpo + "</span></div><button class='puCancelar " + classBot + "' id='" + id +"_cancelar' data-parent=" + id + ">" + cancelar + "</button><button class='puEnviar " + classBot + "' data-parent=" + id + " id='" + id +"_enviar'>" + enviar + "</button></div>";
+    var janela = '<div id="' + id + '" class="popUp ' + classes + '"><h1>' + titulo + "</h1><div><span>" + corpo + "</span></div><button class='puEnviar " + classBot + "' data-parent=" + id + " id='" + id +"_enviar'>" + enviar + "</button></div>";
     $("window, body").css('overflow', 'hidden');
     
     $("body").append(popFundo);

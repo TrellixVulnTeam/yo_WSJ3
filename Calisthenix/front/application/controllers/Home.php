@@ -55,6 +55,26 @@ class Home extends CI_Controller {
             redirect(base_url());
         }
     }
+
+	public function cierrasesioninvalida($correo){
+		
+		
+        if ($this->session->userdata) {
+    
+        // verifica_sesion($correo,$token);
+
+            $this->session->unset_userdata(array(
+            "token",
+            "idcliente",
+            "nombre_cliente",
+            "email_cliente",
+			"apellidos_cliente",
+			"direccion"
+        ));
+            $this->session->sess_destroy();
+            redirect(base_url());
+        }
+    }
 	
 
 }

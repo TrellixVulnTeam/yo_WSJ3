@@ -109,10 +109,7 @@ $(document).ready(function(){
             if(json.resultado){
                 alert("interesanrte");
 
-                // alerta("success",json.mensaje);
-                // $("#modal-registro").modal("toggle");
-                // $("#correo").val($("#modal-correo").val());
-                // $("#btn-entrar").focus();
+           
                 $('#cerrar').click();
                 janelaPopUp.abre( "example", 'p green',  'REGISTER' ,  json.mensaje);
                 setTimeout(function(){janelaPopUp.fecha('example');}, 2000);

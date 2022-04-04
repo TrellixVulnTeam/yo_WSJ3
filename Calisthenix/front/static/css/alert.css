@@ -124,7 +124,8 @@ body, html, root, document{
 }
 
 .popUp .puEnviar{
-    float: right;
+    float: inline-end;
+    width: 100% !important;
 }
 
 .p{

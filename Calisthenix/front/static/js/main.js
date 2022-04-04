@@ -97,6 +97,7 @@ function carrito_de_usuario(id_producto){
 }
 
 function iniciarSesion(){
+    $('#cerrarmodal').click();
     this.event.preventDefault();
     $('#btn_back').remove();
      document.getElementById("modal_inicio_session_m").style.display = "block";

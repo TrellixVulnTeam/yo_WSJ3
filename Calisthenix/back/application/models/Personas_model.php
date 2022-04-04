@@ -48,8 +48,10 @@ class Personas_model extends CI_Model{
     }
 
     public function exists_token( $idcliente, $token ) {
-        $rs =$this->db->get_where('clientes', array('idcliente' => $idcliente,"token" =>$token)
-         , $idcliente, $token);
+        $this->db->where("idcliente",$idcliente);
+        $this->db->where("token",$token);
+        // $rs =$this->db->get_where('clientes', array('idcliente' => $idcliente,"token" =>$token), $idcliente, $token);
+        $rs=$this->db->get("clientes");
         return $rs->num_rows() > 0 ? $rs->row()->idcliente : NULL;
     }
  

@@ -152,7 +152,7 @@
                             <a href="#" class="nav-link" onclick="return shopping()"><i
                                     class="fas fa-shopping-cart fa-lg"></i></a>
                         </button>
-                        <span class="badge badge-notify" id="cantidad-cart">3434</span>
+                        <span class="badge badge-notify" id="cantidad-cart">0</span>
 
                         <?php elseif(empty($this->session->userdata('idcliente'))):?>
 
@@ -549,7 +549,7 @@
                 <div class="container">
                     <div class="row justify-content-center" style="background-color:#FFF5E3">
                         <div class="col-lg-8">
-                            < class="modal-body">
+                            <div class="modal-body">
                                 <!-- Project details-->
                                 <h2 class="text-uppercase" id="ProjectName"></h2>
                                 <p class="item-intro text-muted">Calisthenix</p>
@@ -566,7 +566,7 @@
                                         <strong style="font-size:1.5rem">Category:&nbsp;</strong>
                                         <p id="ProjectCategory" style="font-size:1.2rem; margin: 0 10px">Category: </p>
                                     </li>
-                                    <p id="ProjectId" style="font-size:1.2rem; margin: 0 10px">id </p>
+                                    <p id="ProjectId" hidden style="font-size:1.2rem; margin: 0 10px">id </p>
                                 </ul>
 
                                 <button id="cerrarmodal" class="btn btn-dark btn-lg text-uppercase" style="margin:0 20px"
@@ -575,13 +575,22 @@
                                     Continue looking
                                 </button>
 
-
-
-                                <button id="addCart" onclick="" class="btn btn-success btn-lg text-uppercase"
+                                <?php if(empty($this->session->userdata('idcliente'))):?>
+                                    <button  onclick="return iniciarSesion()" class="btn btn-success btn-lg text-uppercase"
                                     style="margin:0 20px" type="button">
                                     <i class="fas fa-times me-1"></i>
                                     Add to Shopping Cart
                                 </button>
+                            <?php elseif(!empty($this->session->userdata('idcliente'))):?>
+                        
+                            
+                                <button  id="addCart"onclick="" class="btn btn-success btn-lg text-uppercase"
+                                    style="margin:0 20px" type="button">
+                                    <i class="fas fa-times me-1"></i>
+                                    Add to Shopping Cart
+                                </button>
+                            <?php endif;?>
+
 
 
                         </div>

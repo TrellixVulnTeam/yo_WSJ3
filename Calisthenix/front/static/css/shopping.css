@@ -82,7 +82,12 @@ a:hover {
 #cart h1 {
 	font-weight: 300;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
 
+   opacity: 1;
+
+}
 #cart a {
 	color: #53b5aa;
 	text-decoration: none;
@@ -148,7 +153,7 @@ a:hover {
 }
 
 .product header h3 {
-	background: #53b5aa;
+	background: #ff4141;
 	color: #fff;
 	font-size: 22px;
 	font-weight: 300;
@@ -233,7 +238,7 @@ a:hover {
 }
 
 .qt-plus, .qt-minus {
-	background: #fcfcfc;
+	background: #C1C1C1;
 	border: none;
 	font-size: 30px;
 	font-weight: 300;

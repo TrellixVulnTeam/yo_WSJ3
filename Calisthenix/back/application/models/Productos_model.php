@@ -36,6 +36,42 @@ class Productos_model extends CI_Model{
         $rs = $this->db->get( "carrito");
         return $rs->num_rows() > 0 ? $rs->row()->nombre_producto : 0;
     }
+
+    public function insertar_productos_carrito($data){
+        $this->db->insert("carrito",$data);
+        return $this->db->affected_rows() > 0 ? $this->db->affected_rows() : 0;
+   }
+
+   public function get_producto_carrito( $idproducto,$idcliente ) {
+
+        $this->db->where("idproducto",$idproducto);
+        $this->db->where("idcliente",$idcliente);
+        $query=$this->db->get("carrito");
+        return $query->num_rows() == 0 ? NULL : $query->result();
+        
 }
+
+
+public function get_carrito($idcliente){
+    $this->db->where("carrito.idcliente",$idcliente);
+    $this->db->select("*");
+    $this->db->from("carrito");
+    $this->db->join("productos", "productos.idproducto = carrito.idproducto", "left");
+    $this->db->join("clientes", "clientes.idcliente = carrito.idcliente", "left");
+
+    $rs = $this->db->get();
+    
+    return $rs->num_rows() > 0 ? $rs->result() : NULL;
+}
+
+
+public function remover_carrito($idcliente, $idproducto){
+    $this->db->where("idproducto",$idproducto);
+    $this->db->where("idcliente",$idcliente);
+    $this->db->delete("carrito");
+    return $this->db->affected_rows() > 0 ? $this->db->affected_rows() : 0;
+}
+}
+
 
 

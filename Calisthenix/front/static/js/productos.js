@@ -1,67 +1,67 @@
 
-$(document).ready(function(){
+$(document).ready(function () {
     getcategoria();
-    
-    _
-    
 
-    
+    _
+
+
+
 });
 
 
 
 
 var activities = document.getElementById("select_categorias");
-activities.addEventListener("change", function() {
-    $("#titulo_productos").html($("#select_categorias :selected").text());  
+activities.addEventListener("change", function () {
+    $("#titulo_productos").html($("#select_categorias :selected").text());
     $(".productos").remove();
     getcategoria();
 });
 
 _
 
-function getcategoria(){
+function getcategoria() {
     $.ajax({
-        "url" : appData.ws_url + "productos/getproductos/",
-        'dataType' : "json"
+        "url": appData.ws_url + "productos/getproductos/",
+        'dataType': "json"
     })
-    .done(function(json){
-        
-        
-        if(json.resultado){
-            $(".productos").remove();
-            
-            
-            if( $("#select_categorias option[value='text-center']").length >0){
-                
-            }
-            else{
-                json.categorias.forEach(element => {
-                    
-                    
-                    $( "#select_categorias" ).append(
-                        '<option value="text-center">' + element["categoria_producto"] + '</option>' 
-                        )          
-                        
-                        
-                    });   
-                    
+        .done(function (json) {
+
+
+            if (json.resultado) {
+                $(".productos").remove();
+
+
+                if ($("#select_categorias option[value='text-center']").length > 0) {
+
                 }
-                   
-                json.productos.forEach((element,i) => {
-                    
+                else {
+                    json.categorias.forEach(element => {
+
+
+                        $("#select_categorias").append(
+                            '<option value="text-center">' + element["categoria_producto"] + '</option>'
+                        )
+
+
+                    });
+
+                }
+
+                json.productos.forEach((element, i) => {
+
                     imagen = JSON.stringify(element["imagen_producto"]);
                     imagen = JSON.parse(imagen);
-                    
-                    
+
+
                     categoria = JSON.stringify(element["categoria_producto"]);
                     categoria = JSON.parse(categoria);
-                    
-            
-                    if(categoria ===  $("#titulo_productos").html()){
-                       
+
+
+                    if (categoria === $("#titulo_productos").html()) {
+
                         console.log(element)
-                        $( "#portfolio" ).append(
+                        $("#portfolio").append(
                             `
                             <div class="col-lg-4 col-sm-6 mb-4 productos" id="${element.idproducto}">
                             <div class="portfolio-item">
@@ -79,13 +79,13 @@ function getcategoria(){
                             </div>
                             </div>
                             `
-                            )
-                        }
-                        else if($("#select_categorias :selected").text()=="All"){
-                         
-                            console.log(element)
-                            $( "#portfolio" ).append(
-                                `
+                        )
+                    }
+                    else if ($("#select_categorias :selected").text() == "All") {
+
+                        console.log(element)
+                        $("#portfolio").append(
+                            `
                                 <div class="col-lg-4 col-sm-6 mb-4 productos" id="${element.idproducto}">
                                 <div class="portfolio-item">
                                 <a onclick="modaljeje(${element.idproducto},'${element.nombre_producto}','${element.descripcion_producto}','${element.imagen_producto}',${element.precio_producto},'${element.categoria_producto}')
@@ -103,59 +103,46 @@ function getcategoria(){
                                 </div>
 
                                 `
-                                )
-                            }
-                        });
-
-                        appDataProductos = json;
-
+                        )
                     }
-                    else{
-                        alerta("info",json.mensaje);
-                    }
-                    
-                })
-                .fail(error_ajax);
+                });
+
+                appDataProductos = json;
+
             }
-            
-            
-function modaljeje(idproducto,nombre_producto,descripcion_producto,imagen_producto,precio_producto,categoria_producto){
+            else {
+                alerta("info", json.mensaje);
+            }
+
+        })
+        .fail(error_ajax);
+}
+
+
+function modaljeje(idproducto, nombre_producto, descripcion_producto, imagen_producto, precio_producto, categoria_producto) {
 
     $("#ProjectName").html("");
     $("#ProjectDescription").html("");
     $("#ProjectPrice").html("");
-    $("#ProjectCategory").html(""); 
-    $("#ProjectImage").html(""); 
-    $("#ProjectId").html(""); 
-    console.log(idproducto,nombre_producto,descripcion_producto,imagen_producto,precio_producto);
+    $("#ProjectCategory").html("");
+    $("#ProjectImage").html("");
+    $("#ProjectId").html("");
+    console.log(idproducto, nombre_producto, descripcion_producto, imagen_producto, precio_producto);
     alert(idproducto)
 
-//     $.ajax({
-//         "url" : appData.ws_url + "productos/getproducto/",
-//         'dataType' : "json",
-//         'type' : 'post',
-//         'data' : {
-//             'idproducto' : idproducto
-//         }
-//     })
-//    .done(function(json){
+
+    $("#ProjectId").html(idproducto);
+    $("#ProjectName").html(nombre_producto);
+
+    $("#ProjectDescription").html(descripcion_producto);
+    $("#ProjectPrice").html(precio_producto);
+    $("#ProjectCategory").html(categoria_producto);
+    $("#ProjectImage").attr("src", appData.base_url + 'static/assets/img/build/img/calistenia/' + imagen_producto);
+
+    $("#addCart").attr("onclick", `addCart(${idproducto},'${nombre_producto}','${descripcion_producto}','${imagen_producto}',${precio_producto},'${categoria_producto}')`);
 
 
-    $("#ProjectId").html(idproducto); 
-      $("#ProjectName").html(nombre_producto); 
-    //   $("#ProjectName").html(json.producto[0]["nombre_producto"]); 
-      $("#ProjectDescription").html(descripcion_producto); 
-      $("#ProjectPrice").html(precio_producto); 
-      $("#ProjectCategory").html(categoria_producto); 
-     $("#ProjectImage").attr("src",appData.base_url+'static/assets/img/build/img/calistenia/'+imagen_producto); 
-
-     $("#addCart").attr("onclick",`addCart(${idproducto},'${nombre_producto}','${descripcion_producto}','${imagen_producto}',${precio_producto},'${categoria_producto}')`); 
-        // ^-- missing #  
-//    })
-//    .fail(error_ajax);
- 
-    
-}    
+}
 
 
-            
+
