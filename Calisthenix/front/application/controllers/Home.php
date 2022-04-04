@@ -36,14 +36,11 @@ class Home extends CI_Controller {
     }
 
 	
-
-
     public function cierrasesion($correo,$token){
 		
 		
         if ($this->session->userdata) {
-        
-        
+    
         // verifica_sesion($correo,$token);
 
             $this->session->unset_userdata(array(

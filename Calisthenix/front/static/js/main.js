@@ -1,13 +1,3 @@
-// $(document).ready(function(){
-// alert("df");
-
-// $("#modal-sesion").click(function(e){
-//     alert("hola");
-//     iniciarSesion(e);    
-// })
-
-// })
-
 
 
 var elementoEnCarrito = document.getElementById("cantidad-cart");
@@ -31,20 +21,7 @@ function changeContent(link,data = "NULL"){
   });
 }
 
-function create_event_sucursal(){
-    selectSucursal.addEventListener('change',(event)=>{
-        id_sucursal = event.target.value;
-        let a = ($( "#sucursales option:selected" ).text().trim()).split(":")[1].trim();
-        document.getElementById("titulo_productos").innerHTML = "PRODUCTOS " + a.toString();
-        cambiarContenido(id_sucursal);
-        
-    });
-}
-async function cambiarContenido(id_suc){
-    await changeContent("vistas/inventario_sucursal.php",{id_sucursal:id_suc,id_cliente:id_usuario});     
-    creardataItems();
-}
-//sucursales
+
 var objeto = new Map();
 creardataItems();
 
@@ -121,42 +98,13 @@ function carrito_de_usuario(id_producto){
 
 function iniciarSesion(){
     this.event.preventDefault();
+    $('#btn_back').remove();
+     document.getElementById("modal_inicio_session_m").style.display = "block";
+     document.getElementById("modal_registro_m").style.display = "none";
     $('#loginM').modal({show:true});
+    $(".modal-title").html("LOG IN"); 
 }
 
-// async function cerrarSesion(){
-//     this.event.preventDefault();
-//     let url = 'bd/enlaces/cerrar_sesion_cliente.php';
-//     let postData = {
-//         id_usuario:id_usuario
-//     };
-//     $.post(url,postData, function(response){
-//         datos = JSON.parse(response);
-//         let status        = datos.status;
-//         let message       = datos.message;
-        
-//         if(status == "error"){
-//             Swal.fire({
-//                 icon: 'error',
-//                 title: 'Oops...',
-//                 text: message,
-//             }).then(() => {
-//                 $(location).attr('href','index.php');
-//             });
-//         }
-//         else{
-//             Swal.fire(
-//                 'Correct!',
-//                 message,
-//                 'success'
-//             ).then(() => {
-//                 $(location).attr('href','index.php');
-//             });
-//         }
-//     });
-    
-    
-// }
 
 function carrito_de_compras(){
     this.event.preventDefault();
@@ -165,13 +113,6 @@ function carrito_de_compras(){
         $('#carritoM').modal({show:true}); 
     });
 }
-
-
-
-
-
-
-
 
 
 
@@ -242,9 +183,15 @@ $('#carritoM').on('hidden.bs.modal', function (e) {
 });
 
 function registrar_usuario(){
+    
     this.event.preventDefault();
+ 
     document.getElementById("modal_inicio_session_m").style.display = "none";
     document.getElementById("modal_registro_m").style.display = "block";
+    $(".modal-title").html("REGISTER FORM"); 
+    $("#modal_footer_registro_sesion").append(
+           ' <button id="btn_back"type="button" class="btn btn-info" onclick="return iniciarSesion()">Go back</button>'
+        );
 }
 
 $('#loginM').on('hidden.bs.modal', function (e) {
@@ -325,6 +272,10 @@ function validarEmail(email){
 //         document.getElementById("divpasswordUser").classList.add("success-input");
 //         document.getElementById("divpasswordUser").classList.remove("error-input");
 //     }
+
+
+
+
 
 //     if(ciudad.length <= 3){
 //         document.getElementById("divciudadUser").classList.remove("success-input");

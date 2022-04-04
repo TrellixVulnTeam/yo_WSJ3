@@ -1,5 +1,3 @@
- alert("carrito de compras");
-
 
 var id_usuario       = appData.idcliente;
 var total = 0;
@@ -148,7 +146,7 @@ if (!$.fn.DataTable.isDataTable('#table_carrito')) {
             dom: '<"contenedorT"<"spaceNum mb-2 "l> <"leftC"> <"derechaB"f> >rtp',
             "ajax":{
                   'url' : 'bd/enlaces/carrito_cliente.php',
-                  'data' : { 'id_usuario' : id_usuario},
+                  'data' : { 'id_usuario' : appData.idcliente},
                   'type' : 'POST'
             },
             "columns":[

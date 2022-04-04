@@ -5,6 +5,7 @@ class Acceso extends CI_Controller
     public function __construct() {
         parent::__construct();
         $this->load->model( "Personas_model" );
+		
     }
     public function index()
 	{
@@ -13,7 +14,6 @@ class Acceso extends CI_Controller
 
 
     public function verficausuario(){
-
 		 $email_cliente = $this->input->post("email_cliente");
 		 $password_cliente = $this->input->post("password_cliente");
 		if($this->Personas_model->verifica_cliente($email_cliente,$password_cliente)){
@@ -44,7 +44,6 @@ class Acceso extends CI_Controller
 			$obj["resultado"] = false;
 			$obj['mensaje'] = "Password doesn't match";
 		}
-
 
 		   echo json_encode($obj);
 	}
@@ -81,12 +80,22 @@ class Acceso extends CI_Controller
 				$obj["idcliente"] = $idcliente;
 				$obj["resultado"] = true;
 				$obj["mensaje"] = "Costumer inserted correctly";
+
+			
 			}
 			else{
 				$obj["resultado"] = false;
 				$obj["mensaje"] = "Imposible to insert costumer";
 			}
+			
 		}
+		if ( $this->session->flashdata( "mensaje" ) == "" ){
+            mensaje_usuario(
+                $obj[ "resultado" ] ? "info" : "warning",
+                $obj[ "mensaje" ]
+            );
+        }
+		
 		echo json_encode($obj);
 		}
 
@@ -95,20 +104,23 @@ class Acceso extends CI_Controller
     {
         // $correo      = $this->input->post("correoelectronico");
         // $contrasenia = $this->input->post("pass");
-        $query = $this->Personas_model->get_clientes();
-        var_dump($query);
+        // $query = $this->Personas_model->get_clientes();
+        // var_dump($query);
 
-        $query = $this->Personas_model->verifica_cliente($email_cliente, $password_cliente);
-        var_dump($query);
+        // $query = $this->Personas_model->verifica_cliente($email_cliente, $password_cliente);
+        // var_dump($query);
 
         if ($this->Personas_model->verifica_cliente($email_cliente, $password_cliente)) {
             // Crear sesión y redireccionar a la lista de personas
             echo "<br>bien";
+            if ($this->session->flashdata("mensaje") == "") {
+                mensaje_usuario("info", "Good, login correctly");
+            }
             $this->crear_sesion($email_cliente);
         } else {
-            mensaje_usuario("danger", "Email oder Passwort sind falsch");
-            echo "<br>mal";
-            // redirect(base_url());
+            if ($this->session->flashdata("mensaje") == "") {
+                mensaje_usuario("danger", "Cant login");
+            }
         }
     }
 

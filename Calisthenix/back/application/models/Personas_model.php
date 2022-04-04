@@ -47,5 +47,10 @@ class Personas_model extends CI_Model{
         return $this->db->affected_rows() > 0 ? $this->db->insert_id() : 0;
     }
 
-
+    public function exists_token( $idcliente, $token ) {
+        $rs =$this->db->get_where('clientes', array('idcliente' => $idcliente,"token" =>$token)
+         , $idcliente, $token);
+        return $rs->num_rows() > 0 ? $rs->row()->idcliente : NULL;
+    }
+ 
 }

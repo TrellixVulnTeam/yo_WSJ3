@@ -107,14 +107,34 @@ $(document).ready(function(){
         .done( function(json){
             alert(JSON.stringify(json));
             if(json.resultado){
-                alerta("success",json.mensaje);
-                $("#modal-registro").modal("toggle");
-                $("#correo").val($("#modal-correo").val());
-                $("#btn-entrar").focus();
+                alert("interesanrte");
+
+                // alerta("success",json.mensaje);
+                // $("#modal-registro").modal("toggle");
+                // $("#correo").val($("#modal-correo").val());
+                // $("#btn-entrar").focus();
+                $('#cerrar').click();
+                janelaPopUp.abre( "example", 'p green',  'REGISTER' ,  json.mensaje);
+                setTimeout(function(){janelaPopUp.fecha('example');}, 2000);
+                setTimeout(() => {
+                    location.href = appData.base_url; 
+                }, 2000);
+              
+
+               
+                
 
             }
             else{
-                alerta("danger",json.mensaje);
+                 $('#cerrar').click();
+                janelaPopUp.abre( "example", 'p red',  'REGISTER' ,  "This "+json.mensaje + ". try again");
+                setTimeout(function(){janelaPopUp.fecha('example');}, 8000);
+                // setTimeout(() => {
+                //     location.href = appData.base_url; 
+                // }, 2000);
+              
+                // alerta("danger",json.mensaje);
+              
             }
 
         })
@@ -122,15 +142,7 @@ $(document).ready(function(){
     }
     });
 
-    //EVENTO CLICK BOTON REGISTRAR
-    $("#btn-registrar").click(function(){
-        $( ".invalid-feedback" ).remove();
-        $( ".is-invalid" ).removeClass( "is-invalid" );
-        $("#modal-nombre").val("");
-        $("#modal-correo").val("");
-        $("#modal-telefono").val("");
-    });
-    
+
     $("#newModalTableForm").submit(function(e){
         e.preventDefault(); 
         
