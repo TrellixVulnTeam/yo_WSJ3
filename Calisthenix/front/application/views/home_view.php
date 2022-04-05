@@ -445,6 +445,10 @@
                                         <strong style="font-size:1.5rem">Category:&nbsp;</strong>
                                         <p id="ProjectCategory" style="font-size:1.2rem; margin: 0 10px">Category: </p>
                                     </li>
+                                    <li style="display:flex">
+                                        <strong style="font-size:1.5rem">Available:&nbsp;</strong>
+                                        <p id="ProjectCantidad" style="font-size:1.2rem; margin: 0 10px">Category: </p>
+                                    </li>
                                     <p id="ProjectId" hidden style="font-size:1.2rem; margin: 0 10px">id </p>
                                 </ul>
 

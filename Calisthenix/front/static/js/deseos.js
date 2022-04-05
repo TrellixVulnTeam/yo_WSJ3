@@ -111,7 +111,7 @@ function addWishes(
 	precio_producto,
 	categoria_producto
 ) {
-//PREGUNTAMOS
+	//PREGUNTAMOS
 
 
 
@@ -128,14 +128,14 @@ function addWishes(
 		.done(function (json) {
 
 			if (json.resultado) {
-                productodeseo() 
+				productodeseo()
 				janelaPopUp.abre("example", "p purple", "DESEOS", json.mensaje);
 				setTimeout(function () {
 					janelaPopUp.fecha("example");
 				}, 2000);
 			}
 			else if (json.mensaje == "Persona y token NO SON validos") {
-                
+
 				janelaPopUp.abre("example", "p red", "DESEOS", json.mensaje);
 				setTimeout(function () {
 					janelaPopUp.fecha("example");
@@ -150,12 +150,12 @@ function addWishes(
 					janelaPopUp.fecha("example");
 				}, 2000);
 
-                 removerdeseos(idproducto);
-                 $('#idcorazon_'+idproducto).remove();
-                 $("#addWishes_"+idproducto).append(
-                    `<i  id="idcorazon_${idproducto}" class="fa fa-heart"></i>`
-                   );
-                   $("#addWishes_"+idproducto).removeClass('corazonlleno');
+				removerdeseos(idproducto);
+				$('#idcorazon_' + idproducto).remove();
+				$("#addWishes_" + idproducto).append(
+					`<i  id="idcorazon_${idproducto}" class="fa fa-heart"></i>`
+				);
+				$("#addWishes_" + idproducto).removeClass('corazonlleno');
 			}
 		})
 		.fail();
@@ -163,7 +163,7 @@ function addWishes(
 
 
 
- function removerdeseos(idproducto) {
+function removerdeseos(idproducto) {
 
 	$.ajax({
 		url: appData.ws_url + "productos/removerdeseos/",
@@ -207,7 +207,7 @@ function productosdeseos() {
 	})
 		.done(function (json) {
 			if (json.resultado) {
-			
+
 				json.productos.forEach((element, i) => {
 					numeroproductoscarrito = i + 1;
 					imagen = JSON.stringify(element["imagen_producto"]);
@@ -230,8 +230,10 @@ function productosdeseos() {
 		${element.descripcion_producto}
 		  </div>
 		  <footer class="content">
-	
-		  
+		  <button onclick="addCart2(${element.idproducto},'${element.nombre_producto}','${element.descripcion_producto}','${element.imagen_producto}',${element.precio_producto},'${element.categoria_producto}',${element.cantidad})" 
+			  class="btn btn-primary" style="margin:0 0; padding: 0 0;width:fit-content;margin: auto auto;height:inherit;background:magenta" type="button">
+		  Add to Shopping Cart
+	  </button>
 			
 			<h2 class="price">
 			  <span></span>
@@ -262,23 +264,80 @@ function productodeseo() {
 			"idcliente": appData.idcliente
 		}
 	})
-    .done(function(json){
-        
-         json.productos.forEach((element,i)=>{
+		.done(function (json) {
 
-            
-          $("#addWishes_"+element.idproducto).addClass('corazonlleno');
-          $('#idcorazon_'+element.idproducto).remove();
-        //   if()   
-          $("#addWishes_"+element.idproducto).append(
-           `<i  id="idcorazon_${element.idproducto}" class="fa fa-heart fa-2x"></i>`
-          );
-         })
-    })
+			json.productos.forEach((element, i) => {
+
+
+				$("#addWishes_" + element.idproducto).addClass('corazonlleno');
+				$('#idcorazon_' + element.idproducto).remove();
+				//   if()   
+				$("#addWishes_" + element.idproducto).append(
+					`<i  id="idcorazon_${element.idproducto}" class="fa fa-heart fa-2x"></i>`
+				);
+			})
+		})
 }
 
 
 
 function tienda() {
 	window.location.href = appData.base_url + "home/index/" + appData.idcliente + "/" + appData.token;
+}
+
+
+
+function addCart2(
+	idproducto,
+	nombre_producto,
+	descripcion_producto,
+	imagen_producto,
+	precio_producto,
+	categoria_producto,
+	cantidad
+) {
+	if(cantidad ==0){
+		janelaPopUp.abre("example", "p red", "CARRITO", "NO PRODUCTS IN STOCK! SORRY );");
+		setTimeout(function () {
+			janelaPopUp.fecha("example");
+		}, 2000);
+	}
+	else{
+		$.ajax({
+			url: appData.ws_url + "productos/insertarcarrito/",
+			dataType: "json",
+			type: "post",
+			data: {
+				"idproducto": idproducto,
+				"idcliente": appData.idcliente,
+				"token": appData.token
+			},
+		})
+			.done(function (json) {	
+				if (json.resultado) {
+					janelaPopUp.abre("example", "p green", "CARRITO", json.mensaje);
+					setTimeout(function () {
+						janelaPopUp.fecha("example");
+					}, 2000);
+				}
+				else if (json.mensaje == "Persona y token NO SON validos") {
+	
+					janelaPopUp.abre("example", "p red", "CARRITO", json.mensaje);
+					setTimeout(function () {
+						janelaPopUp.fecha("example");
+					}, 2000);
+					window.location.href = appData.base_url + 'home/cierrasesioninvalida/' + appData.email_cliente;
+				}
+	
+				else {
+					janelaPopUp.abre("example", "p red", "CARRITO", json.mensaje);
+					setTimeout(function () {
+						janelaPopUp.fecha("example");
+					}, 2000);
+				}
+			})
+			.fail();
+	}
+
+
 }

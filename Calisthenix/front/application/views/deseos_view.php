@@ -48,6 +48,7 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script src="<?= base_url() ?>static/js/alert.js"></script>
   <script src="<?= base_url() ?>static/js/deseos.js"></script>
+  <!-- <script src="<?= base_url() ?>static/js/shopping.js"></script> -->
 </body>
 
 </html>

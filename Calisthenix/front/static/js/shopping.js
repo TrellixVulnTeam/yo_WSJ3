@@ -112,6 +112,7 @@ function addCart(
 	categoria_producto
 ) {
 
+
 	$.ajax({
 		url: appData.ws_url + "productos/insertarcarrito/",
 		dataType: "json",
@@ -123,7 +124,7 @@ function addCart(
 		},
 	})
 		.done(function (json) {
-
+		
 			cantidadiconocarrito()
 			
 			$("#cerrarmodal").click();
@@ -152,7 +153,6 @@ function addCart(
 				}, 2000);
 			}
 		})
-		.fail();
 }
 
 function aumentar(cantidad, id, precio) {
