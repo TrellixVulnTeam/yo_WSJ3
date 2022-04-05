@@ -19,3 +19,18 @@ function shopping() {
 
 
 
+function wishes() {
+    $.ajax({
+        'url': appData.base_url + "carrito/deseos/",
+        "type": "post",
+        "data": {
+            "idcliente": appData.idcliente,
+            "token": appData.token
+        }
+    })
+        .done(function (done) {
+            window.location.href = appData.base_url + "carrito/deseos/" +
+                appData.idcliente + "/" + appData.token;
+        })
+        .fail();
+}

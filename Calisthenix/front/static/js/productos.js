@@ -1,4 +1,4 @@
-
+var deseoid = 0;
 $(document).ready(function () {
     getcategoria();
 });
@@ -18,6 +18,11 @@ function getcategoria() {
         .done(function (json) {
 
             if (json.resultado) {
+
+                productodeseo();
+
+
+
                 $(".productos").remove();
                 if ($("#select_categorias option[value='text-center']").length > 0) {                }
                 else {
@@ -36,6 +41,7 @@ function getcategoria() {
                     categoria = JSON.stringify(element["categoria_producto"]);
                     categoria = JSON.parse(categoria);
 
+                    deseoid++
                     if (categoria === $("#titulo_productos").html()) {
 
                         $("#portfolio").append(
@@ -49,9 +55,11 @@ function getcategoria() {
                             </div>
                             <img class="img-fluid"style="height:500px; width:fill-content;" src="${appData.base_url}static/assets/img/build/img/calistenia/${imagen}"alt="..." />
                             </a>
+                            <a id="addWishes_${element.idproducto}" onclick="addWishes(${element.idproducto},'${element.nombre_producto}','${element.descripcion_producto}','${element.imagen_producto}',${element.precio_producto},'${element.categoria_producto}')" class="nav-link" style="margin-inline:inherit;display:flex;position:absolute;"> <i id="idcorazon_${element.idproducto}"class="fa fa-heart"></i></a>
                             <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">${element.nombre_producto}</div>
                             <div class="portfolio-caption-subheading text-muted">${element.descripcion_producto}</div>
+
                             </div>
                             </div>
                             </div>
@@ -71,6 +79,7 @@ function getcategoria() {
                                 </div>
                                 <img class="img-fluid"style="height:500px; width:fill-content;" src="${appData.base_url}static/assets/img/build/img/calistenia/${imagen}"alt="..." />
                                 </a>
+                                <a id="addWishes_${element.idproducto}" onclick="addWishes(${element.idproducto},'${element.nombre_producto}','${element.descripcion_producto}','${element.imagen_producto}',${element.precio_producto},'${element.categoria_producto}')" class="nav-link" style="margin-inline:inherit;display:flex;position:absolute;"> <i id="idcorazon_${element.idproducto}"class="fa fa-heart"></i></a>
                                 <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">${element.nombre_producto}</div>
                                 <div class="portfolio-caption-subheading text-muted">${element.descripcion_producto}</div>
@@ -108,8 +117,5 @@ function modaljeje(idproducto, nombre_producto, descripcion_producto, imagen_pro
 
     $("#addCart").attr("onclick", `addCart(${idproducto},'${nombre_producto}','${descripcion_producto}','${imagen_producto}',${precio_producto},'${categoria_producto}')`);
 
-
 }
-
-
 

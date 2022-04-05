@@ -97,4 +97,38 @@ class Productos_model extends CI_Model
         $query = $this->db->query('INSERT INTO detalle_compra (cant_prod, idproducto, precio_det, id_compra) values(' . $cantidad . ',' . $idproducto . ',' . $precio_det . ',' . $idcompra . ')');
         return $this->db->affected_rows() > 0 ?  $this->db->affected_rows() : 0;
     }
+
+
+    public function get_deseos($idcliente)
+    {
+        $this->db->where("deseos.idcliente", $idcliente);
+        $this->db->select("*");
+        $this->db->from("deseos");
+        $this->db->join("productos", "productos.idproducto = deseos.idproducto", "left");
+        $this->db->join("clientes", "clientes.idcliente = deseos.idcliente", "left");
+
+        $rs = $this->db->get();
+
+        return $rs->num_rows() > 0 ? $rs->result() : NULL;
+    }
+
+    public function remover_deseos($idcliente, $idproducto)
+    {
+        $this->db->where("idproducto", $idproducto);
+        $this->db->where("idcliente", $idcliente);
+        $this->db->delete("deseos");
+        return $this->db->affected_rows() > 0 ? $this->db->affected_rows() : 0;
+    }
+    public function get_producto_deseos($idproducto, $idcliente)
+    {
+        $this->db->where("idproducto", $idproducto);
+        $this->db->where("idcliente", $idcliente);
+        $query = $this->db->get("deseos");
+        return $query->num_rows() == 0 ? NULL : $query->result();
+    }
+    public function insertar_productos_deseos($data)
+    {
+        $this->db->insert("deseos", $data);
+        return $this->db->affected_rows() > 0 ? $this->db->affected_rows() : 0;
+    }
 }

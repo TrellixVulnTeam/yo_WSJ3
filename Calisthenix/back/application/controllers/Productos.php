@@ -199,4 +199,72 @@ class Productos extends CI_Controller
         }
         echo json_encode($obj);
     }
+
+
+
+  
+    public function removerdeseos()
+    {
+        $idproducto = $this->input->post("idproducto");
+        $idcliente = $this->input->post("idcliente");
+        $producto = $this->Productos_model->remover_deseos($idcliente, $idproducto);
+        if ($producto != 0) {
+            $obj["idproducto"] = $idproducto;
+            $obj["resultado"] = true;
+            $obj["mensaje"] = "Producto SI eliminado de favoritos";
+        } else {
+            $obj["resultado"] = false;
+            $obj["mensaje"] = "Producto NO eliminado de favoritos";
+        }
+        echo json_encode($obj);
+    }
+
+    public function getdeseos()
+    {
+        $idcliente = $this->input->post("idcliente");
+        $data = $this->Productos_model->get_deseos($idcliente);
+
+        $obj["resultado"] = $data != NULL;
+        $obj["mensaje"] = $obj["resultado"] ?
+            count($data) . ' producto(s) deseados' : "No products deseados";
+        $obj["productos"] = $data;
+        echo json_encode($obj);
+    }
+    public function insertardeseos()
+    {
+        $idproducto = $this->input->post("idproducto") ?? "";
+        $idcliente = $this->input->post("idcliente") ?? "";
+        $token = $this->input->post("token") ?? "";
+
+        $this->verificatokencarrito($idcliente, $token);
+        $producto = $this->Productos_model->get_producto_deseos($idproducto, $idcliente);
+
+        if ($producto != 0) {
+            $obj["idproducto"] = $idproducto;
+            $obj["resultado"] = false;
+            $obj["mensaje"] = "Producto YA existe en favoritos";
+            echo json_encode($obj);
+        } else {
+            $obj["resultado"] = true;
+            $obj["mensaje"] = "Producto NO existe en ESTE usuario en favoritos";
+
+
+            $data = array(
+                "idcliente" =>  $idcliente,
+                "idproducto" => $idproducto
+            );
+
+            $productocarrito = $this->Productos_model->insertar_productos_deseos($data);
+
+            if ($productocarrito != 0) {
+                $obj["producto"] = $productocarrito;
+                $obj["resultado"] = true;
+                $obj["mensaje"] = "Producto agregado a favoritos correctamente";
+            } else {
+                $obj["resultado"] = false;
+                $obj["mensaje"] = "El producto no se pudo agregar a favoritos";
+            }
+            echo json_encode($obj);
+        }
+    }
 }

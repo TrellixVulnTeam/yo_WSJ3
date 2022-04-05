@@ -74,10 +74,24 @@
                         <li class="nav-item"><a class="nav-link" <a href="<?= base_url() ?>home/cierrasesion/<?= $this->session->email_cliente ?>/<?= $this->session->token ?>"><i class="fas fa-user me-2"></i> Log out</a></li>
                     <?php endif; ?>
                     <!-- MOSTRAR INICIAR SESION O CERRAR SESION -->
-                    <li class="nav-item"><a class="nav-link" href="#services">Utilities</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Productos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">Acerca De</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#team">Account</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services"style="margin-inline:inherit">Utilities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio"style="margin-inline:inherit">Productos</a></li>
+
+
+                    <!-- WISHES -->
+                    <?php if (empty($this->session->userdata('idcliente'))) : ?>
+                        <li class="nav-item">
+                        <a href="#"onclick="return iniciarSesion()" class="nav-link corazon"style="margin-inline:inherit;display:flex">Wishes
+                                    <i class="fa fa-heart"></i></a></li>
+                          
+                    <?php elseif (!empty($this->session->userdata('idcliente'))) : ?>
+                        <li class="nav-item"> 
+                      <a href="#" class="nav-link corazon" style="margin-inline:inherit;display:flex" onclick="return wishes()"> Wishes<i class="fa fa-heart"></i></a></li>
+                    <?php endif; ?>
+                    <!-- WISHES -->
+
+ 
+                    <li class="nav-item"><a class="nav-link " href="#team">Account</a></li>
                 </ul>
             </div>
             <div class="navbarcarrito">
@@ -207,50 +221,9 @@
     <!-- About-->
     <section class="page-section" id="about">
         <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">About Us</h2>
-                <h3 class="section-subheading text-muted">Calisthenix</h3>
-            </div>
+
             <ul class="timeline">
-                <li>
-                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="<?= base_url() ?>static/assets/img/about/1.jpg" alt="..." /></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4>2020-2021</h4>
-                            <h4 class="subheading">Nuestros Comienzos</h4>
-                        </div>
-                        <div class="timeline-body">
-                            <p class="text-muted">Nacimos como una necesidad de facilitarte la busqueda de la mochila
-                                perfecta la visión de tener un catalogo amplio y para todo tipo de usuario</p>
-                        </div>
-                    </div>
-                </li>
-                <li class="timeline-inverted">
-                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="<?= base_url() ?>static/assets/img/about/2.jpg" alt="..." /></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4>2021</h4>
-                            <h4 class="subheading">Nuestra Idea Tomo Forma</h4>
-                        </div>
-                        <div class="timeline-body">
-                            <p class="text-muted">Lo que comenzo como una idea se empezo a concretar</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="<?= base_url() ?>static/assets/img/about/3.jpg" alt="..." /></div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4>2021</h4>
-                            <h4 class="subheading">Creamos un modelo de negocio</h4>
-                        </div>
-                        <div class="timeline-body">
-                            <p class="text-muted"> Todos los colaboraderes llegamos al común acuerdo de que la mejor
-                                manera de crecer era aprovechando los recursos y las ventajas de las plataformas online.
-                            </p>
-                        </div>
-                    </div>
-                </li>
+
 
                 <li class="timeline-inverted">
                     <div class="timeline-image">
@@ -486,8 +459,6 @@
                                         Add to Shopping Cart
                                     </button>
                                 <?php elseif (!empty($this->session->userdata('idcliente'))) : ?>
-
-
                                     <button id="addCart" onclick="" class="btn btn-success btn-lg text-uppercase" style="margin:0 20px" type="button">
                                         <i class="fas fa-times me-1"></i>
                                         Add to Shopping Cart
@@ -523,6 +494,7 @@
     <script src="<?= base_url() ?>static/js/carrito.js"></script>
     <script src="<?= base_url() ?>static/js/productos.js"></script>
     <script src="<?= base_url() ?>static/js/shopping.js"></script>
+    <script src="<?= base_url() ?>static/js/deseos.js"></script>
 </body>
 
 </html>
