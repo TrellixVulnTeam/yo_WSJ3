@@ -1,15 +1,7 @@
 
 $(document).ready(function () {
     getcategoria();
-
-    _
-
-
-
 });
-
-
-
 
 var activities = document.getElementById("select_categorias");
 activities.addEventListener("change", function () {
@@ -18,8 +10,6 @@ activities.addEventListener("change", function () {
     getcategoria();
 });
 
-_
-
 function getcategoria() {
     $.ajax({
         "url": appData.ws_url + "productos/getproductos/",
@@ -27,25 +17,15 @@ function getcategoria() {
     })
         .done(function (json) {
 
-
             if (json.resultado) {
                 $(".productos").remove();
-
-
-                if ($("#select_categorias option[value='text-center']").length > 0) {
-
-                }
+                if ($("#select_categorias option[value='text-center']").length > 0) {                }
                 else {
                     json.categorias.forEach(element => {
-
-
                         $("#select_categorias").append(
                             '<option value="text-center">' + element["categoria_producto"] + '</option>'
                         )
-
-
                     });
-
                 }
 
                 json.productos.forEach((element, i) => {
@@ -53,14 +33,11 @@ function getcategoria() {
                     imagen = JSON.stringify(element["imagen_producto"]);
                     imagen = JSON.parse(imagen);
 
-
                     categoria = JSON.stringify(element["categoria_producto"]);
                     categoria = JSON.parse(categoria);
 
-
                     if (categoria === $("#titulo_productos").html()) {
 
-                        console.log(element)
                         $("#portfolio").append(
                             `
                             <div class="col-lg-4 col-sm-6 mb-4 productos" id="${element.idproducto}">
@@ -83,7 +60,6 @@ function getcategoria() {
                     }
                     else if ($("#select_categorias :selected").text() == "All") {
 
-                        console.log(element)
                         $("#portfolio").append(
                             `
                                 <div class="col-lg-4 col-sm-6 mb-4 productos" id="${element.idproducto}">
@@ -101,21 +77,17 @@ function getcategoria() {
                                 </div>
                                 </div>
                                 </div>
-
                                 `
                         )
                     }
                 });
-
                 appDataProductos = json;
-
             }
             else {
                 alerta("info", json.mensaje);
             }
-
         })
-        .fail(error_ajax);
+        .fail();
 }
 
 
@@ -127,13 +99,8 @@ function modaljeje(idproducto, nombre_producto, descripcion_producto, imagen_pro
     $("#ProjectCategory").html("");
     $("#ProjectImage").html("");
     $("#ProjectId").html("");
-    console.log(idproducto, nombre_producto, descripcion_producto, imagen_producto, precio_producto);
-    alert(idproducto)
-
-
     $("#ProjectId").html(idproducto);
     $("#ProjectName").html(nombre_producto);
-
     $("#ProjectDescription").html(descripcion_producto);
     $("#ProjectPrice").html(precio_producto);
     $("#ProjectCategory").html(categoria_producto);

@@ -1,16 +1,6 @@
 <?php 
 class Personas_model extends CI_Model{
-    
-    public function get_clientes(){
-        
-        $this->db->select("*");
-        $this->db->from("clientes");
-        $rs = $this->db->get();
-        
-        return $rs->num_rows() > 0 ? $rs->result() : NULL;
-    }
-    
-    
+       
     public function verifica_cliente( $email_cliente, $password_cliente) {
         $this->db->where( "BINARY email_cliente = '$email_cliente'", "", FALSE );
         $this->db->where( "BINARY password_cliente = '$password_cliente'", "", FALSE );
@@ -50,9 +40,17 @@ class Personas_model extends CI_Model{
     public function exists_token( $idcliente, $token ) {
         $this->db->where("idcliente",$idcliente);
         $this->db->where("token",$token);
-        // $rs =$this->db->get_where('clientes', array('idcliente' => $idcliente,"token" =>$token), $idcliente, $token);
         $rs=$this->db->get("clientes");
         return $rs->num_rows() > 0 ? $rs->row()->idcliente : NULL;
     }
+
+
+       // public function get_clientes(){
+    //     $this->db->select("*");
+    //     $this->db->from("clientes");
+    //     $rs = $this->db->get();
+    //     return $rs->num_rows() > 0 ? $rs->result() : NULL;
+    // }
+
  
 }
